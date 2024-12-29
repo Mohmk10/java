@@ -1,8 +1,5 @@
 import java.util.Scanner;
 
-
-
-
 /*
 *
 * Exercice 1 : Écrire un programme qui saisit deux entiers a et b,
@@ -15,7 +12,6 @@ public class App {
    public static void main(String[] args) throws Exception {
 
     Scanner scn = new Scanner(System.in);
-
 
     System.out.print("Entrez un entier a: ");
     int a = scn.nextInt();

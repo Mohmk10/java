@@ -6,13 +6,13 @@ import java.util.Scanner;
  * 
  * Formule :
  * 
- * S = π × a2
+ * S = π × a²
  * P = 2 × π × a
  */
 public class App {
     public static void main(String[] args) throws Exception {
 
-        final float PI = (float) 3.14;
+        final float PI =  3.14f;
 
         Scanner scn = new Scanner(System.in);
 
@@ -26,5 +26,7 @@ public class App {
 
         System.out.println("Sa surface: " + surface);
         System.out.println("Son périmètre: " + perimetre);
+
+        scn.close();
     }
 }

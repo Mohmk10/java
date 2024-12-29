@@ -11,9 +11,6 @@ import java.util.Scanner;
  * S = l × L
  * 
  * d = √l²+L²
- 
-​
-
  */
 
 public class App {

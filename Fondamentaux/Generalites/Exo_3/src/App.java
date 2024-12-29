@@ -6,7 +6,7 @@ import java.util.Scanner;
  * 
  * Correspondance :
  * 
- * °F=(°C × 9/5)+ 32
+ * °F = (°C × 9/5)+ 32
  */
 
 
@@ -21,5 +21,7 @@ public class App {
         float fahrenheit = (float) (a * 9/5) + 32;
 
         System.out.println(a +"°C" + " = " + fahrenheit + "°F" );
+
+        scn.close();
     }
 }

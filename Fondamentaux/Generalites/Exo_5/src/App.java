@@ -8,8 +8,8 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) throws Exception {
 
-        final float DOLLARS_USA = (float) 0.0016;
-        final float DOLLARS_STERLING = (float) 0.00126;
+        final float DOLLARS_USA = 0.0016f;
+        final float DOLLARS_STERLING = 0.00126f;
 
         Scanner scn = new Scanner(System.in);
 
