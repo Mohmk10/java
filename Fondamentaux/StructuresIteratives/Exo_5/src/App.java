@@ -7,41 +7,50 @@ import java.util.Scanner;
  */
 
 public class App {
-    public static void main(String[] args) throws Exception {
 
-        Scanner sn = new Scanner(System.in);
+    static Scanner sn = new Scanner(System.in);
+    public static void main(String[] args) throws Exception {
 
         System.out.println("\nCalcul du PPCM de deux entiers");
 
-        System.out.print("\nEntrez un entier a: ");
-        int a = sn.nextInt();
+        int a = saisie("Entrez un entier a");
+        int b = saisie("Entrez un entier b");
 
+        calculPpmc(a, b);
+
+        sn.close();
+    }
+
+    static int saisie(String message) {
+        System.out.print("\n" + message + ": ");
+        int entier = sn.nextInt();
+
+        return entier;
+    }
+
+    static void calculPpmc (int a, int b) {
+
+        int pgcd = 0;
         if (a < 0) {
             System.out.println("\na doit être supérieur à zero '0' \n");
         } else {
-            System.out.print("\nEntrez un entier b: ");
-            int b = sn.nextInt();
-
             if (b < 0) {
                 System.out.println("\nb doit être supérieur à zero '0' \n");
             } else {
-                int x = a;
+                pgcd = a;
                 int y = b;
                 int reste;
 
                 while (y != 0) {
-                    reste = x % y;
-                    x = y;
+                    reste = pgcd % y;
+                    pgcd = y;
                     y = reste;
                 }
-                System.out.println("\nLe PGCD de " + a + " et " + b + " est: " + x);
-
-                int ppcm = a * b / x;
-
-                System.out.println("\nDonc le PPCM de " + a + " et " + b + " est: " + ppcm + "\n");
             }
         }
 
-        sn.close();
+        int ppcm = a * b / pgcd;
+
+        System.out.println("\nLe PPCM de " + a + " et " + b + " est: " + ppcm + "\n");
     }
 }

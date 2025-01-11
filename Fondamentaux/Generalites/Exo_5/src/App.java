@@ -6,25 +6,33 @@ import java.util.Scanner;
  */
 
 public class App {
+
+    static Scanner scn = new Scanner(System.in);
     public static void main(String[] args) throws Exception {
 
+        
+
+        float montant = saisie();
+        conversion(montant);
+
+
+    }
+
+    static float saisie() {
+        System.out.print("\nEntrez un montant en franc CFA: ");
+        float entier = scn.nextInt();
+
+        return entier;
+    }
+
+    static void conversion (float montant) {
         final float DOLLARS_USA = 0.0016f;
         final float DOLLARS_STERLING = 0.00126f;
 
-        Scanner scn = new Scanner(System.in);
+        float montantDollars = montant * DOLLARS_USA;
+        float montantSterling = montant * DOLLARS_STERLING;
 
-        System.out.print("Entrez un montant en franc CFA: ");
-        float a = scn.nextFloat();
-
-        float montantDollars = a * DOLLARS_USA;
-        float montantSterling = a * DOLLARS_STERLING;
-
-        System.out.println();
-
-        System.out.println(a + " CFA" + " = " + montantDollars + " $");
-        System.out.println(a + " CFA" + " = " + montantSterling + " £");
-
-        scn.close();
-
+        System.out.println("\n" + montant + " CFA" + " = " + montantDollars + " $");
+        System.out.println("\n" + montant + " CFA" + " = " + montantSterling + " £\n");
     }
 }

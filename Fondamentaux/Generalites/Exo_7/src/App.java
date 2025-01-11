@@ -7,26 +7,30 @@ import java.util.Scanner;
  */
 
 public class App {
+
+    static Scanner scn = new Scanner(System.in);
     public static void main(String[] args) throws Exception {
 
-        Scanner scn = new Scanner(System.in);
+        float r1 = saisie("Entrez la resistance R1");
+        float r2 = saisie("Entrez la resistance R2");
+        float r3 = saisie("Entrez la resistance R3");
 
-        System.out.print("Entrez la resistance R1: ");
-        float r1 = scn.nextFloat();
-        System.out.print("Entrez la resistance R2: ");
-        float r2 = scn.nextFloat();
-        System.out.print("Entrez la resistance R3: ");
-        float r3 = scn.nextFloat();
+        resistances(r1, r2, r3);
 
+    }
+
+    static float saisie(String message) {
+        System.out.print("\n " + message + ": " );
+        float entier = scn.nextInt();
+
+        return entier;
+    }
+
+    static void resistances(float r1, float r2, float r3) {
         float resistanceSerie = r1 + r2 + r3;
         float resistanceParallele = (r1 * r2 * r3) / (r1 * r2 + r2 * r3 + r1 * r3);
 
-        System.out.println();
-
-        System.out.println("La résistance en serie: " + resistanceSerie);
-        System.out.println("La résistance en parallèle: " + resistanceParallele);
-
-        scn.close();
-
+        System.out.println("\nLa résistance en serie: " + resistanceSerie);
+        System.out.println("\nLa résistance en parallèle: " + resistanceParallele + "\n");
     }
 }

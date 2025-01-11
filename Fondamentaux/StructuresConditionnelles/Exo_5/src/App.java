@@ -7,96 +7,98 @@ import java.util.Scanner;
  */
 
 public class App {
+
+    static Scanner scn = new Scanner(System.in);
     public static void main(String[] args) throws Exception {
 
-        Scanner scn = new Scanner(System.in);
+        System.out.println("\n1 - Avec les if...else");
+        System.out.println("\n2 - Avec le switch...case");
 
-        System.out.println("1 - Avec les if...else");
-        System.out.println("2 - Avec le switch...case");
-
-        System.out.print("Faites un choix: ");
-        int choix = scn.nextInt();
+        int choix = saisie("Faites un choix");
 
         if (choix == 1) {
-            System.out.println("if...else");
-            System.out.println("Afficher un jour en choisissant le chiffre correspondant");
-
-            System.out.println();
-
-            System.out.print("Entrez un chiffre: ");
-            int jourIf = scn.nextInt();
-
-            if (jourIf == 1) 
-                System.out.println("Lundi");
-            else {
-                if (jourIf == 2) 
-                    System.out.println("Mardi");
-                else {
-                    if (jourIf ==3) 
-                        System.out.println("Mercredi");
-                    else {
-                        if (jourIf == 4) 
-                            System.out.println("Jeudi");
-                        else {
-                            if (jourIf == 5) 
-                                System.out.println("Vendredi");
-                            else {
-                                if (jourIf == 6) 
-                                    System.out.println("Samedi");
-                                else {
-                                    if (jourIf == 7) 
-                                        System.out.println("Dimanche");
-                                    else
-                                        System.out.println("Veuillez choisir entre 1 et 7");
-                                }
-                                
-                            }
-                        }
-                        
-                    }
-                    
-                }
-            }
+            System.out.println("\nAfficher un jour en choisissant le chiffre correspondant");
+            semaineIf();
         } else {
             if (choix == 2) {
-                System.out.println("switch...case");
-                System.out.println("Afficher un jour en choisissant le chiffre correspondant");
-
-                System.out.println();
-
-                System.out.print("Entrez un chiffre: ");
-                int jourCase = scn.nextInt();
-
-                switch (jourCase) {
-                    case 1:
-                        System.out.println("Lundi");
-                        break;
-                    case 2:
-                        System.out.println("Mardi");
-                        break;
-                    case 3:
-                        System.out.println("Mercredi");
-                        break;
-                    case 4:
-                        System.out.println("Jeudi");
-                        break;
-                    case 5:
-                        System.out.println("Vendredi");
-                        break;
-                    case 6:
-                        System.out.println("Samedi");
-                        break;
-                    case 7:
-                        System.out.println("Dimanche");
-                        break;
-                    default:
-                        System.out.println("Veuillez choisir entre 1 et 7");
-                        break;
-                }
+                System.out.println("\nAfficher un jour en choisissant le chiffre correspondant");
+                semaineSwitch();
             } else
                 System.out.println("Veuillez choisir entre 1 et 2");
         }
+    }
 
-        scn.close();
+
+    static int saisie(String message) {
+        System.out.print("\n " + message + ": " );
+        int entier = scn.nextInt();
+
+        return entier;
+    }
+
+    static void semaineIf() {
+
+        int jourIf = saisie("Entrez un chiffre");
+
+        if (jourIf == 1) 
+            System.out.println("\nLundi\n");
+        else {
+            if (jourIf == 2) 
+                System.out.println("\nMardi\n");
+            else {
+                if (jourIf ==3) 
+                    System.out.println("\nMercredi\n");
+                else {
+                    if (jourIf == 4) 
+                        System.out.println("\nJeudi\n");
+                    else {
+                        if (jourIf == 5) 
+                            System.out.println("\nVendredi\n");
+                        else {
+                            if (jourIf == 6) 
+                                System.out.println("\nSamedi\n");
+                            else {
+                                if (jourIf == 7) 
+                                    System.out.println("\nDimanche\n");
+                                else
+                                    System.out.println("\nVeuillez choisir entre 1 et 7\n");
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    static void semaineSwitch() {
+
+        int jourCase = saisie("Entrez un chiffre");
+
+        switch (jourCase) {
+            case 1:
+                System.out.println("\nLundi\n");
+                break;
+            case 2:
+                System.out.println("\nMardi\n");
+                break;
+            case 3:
+                System.out.println("\nMercredi\n");
+                break;
+            case 4:
+                System.out.println("\nJeudi\n");
+                break;
+            case 5:
+                System.out.println("\nVendredi\n");
+                break;
+            case 6:
+                System.out.println("\nSamedi\n");
+                break;
+            case 7:
+                System.out.println("\nDimanche\n");
+                break;
+            default:
+                System.out.println("\nVeuillez choisir entre 1 et 7\n");
+                break;
+        }
     }
 }

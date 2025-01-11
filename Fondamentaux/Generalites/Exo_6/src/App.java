@@ -14,26 +14,31 @@ import java.util.Scanner;
  */
 
 public class App {
+
+    static Scanner scn = new Scanner(System.in);
     public static void main(String[] args) throws Exception {
 
-        Scanner scn = new Scanner(System.in);
+        float longueur = saisie("Entrez la longueur");
+        float largeur = saisie("Entrez la largeur");
 
-        System.out.print("Entrez la longueur: ");
-        float longueur = scn.nextFloat();
-        System.out.print("Entrez la largeur: ");
-        float largeur = scn.nextFloat();
+        rectangle(longueur, largeur);
 
+    }
+
+    static float saisie(String message) {
+        System.out.print("\n " + message + ": " );
+        float entier = scn.nextInt();
+
+        return entier;
+    }
+
+    static void rectangle (float longueur, float largeur){
         float perimetre = 2 * (longueur + largeur);
         float surface = longueur * largeur;
         float diagonal = (float) Math.sqrt((longueur * longueur) + (largeur * largeur));
 
-        System.out.println();
-
-        System.out.println("Le périmètre: " + perimetre);
-        System.out.println("La surface: " + surface);
-        System.out.println("Le diagonal: " + diagonal);
-
-        scn.close();
-
+        System.out.println("\nLe périmètre: " + perimetre);
+        System.out.println("\nLa surface: " + surface);
+        System.out.println("\nLe diagonal: " + diagonal + "\n");
     }
 }

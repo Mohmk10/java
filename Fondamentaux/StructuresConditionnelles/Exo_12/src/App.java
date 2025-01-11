@@ -5,62 +5,84 @@ import java.util.Scanner;
  */
 
 public class App {
+
+    static Scanner sn = new Scanner(System.in);
     public static void main(String[] args) throws Exception {
 
-        Scanner sn = new Scanner(System.in);
+        System.out.println("\nNombre de jours dans un mois à une année\n");
 
-        System.out.println("\nDate valide ou pas Jour Mois Année\n");
+        int jour = saisie("Entrez une date (Jour)");
+        int mois = saisie("Entrez une date (Mois)");
+        int annee = saisie("Entrez une date (Année)");
 
-        System.out.print("Entrez une date (Jour): ");
-        int jour = sn.nextInt();
+        validationDate(jour, mois, annee);
+    }
 
-        if (jour < 1 || jour > 31) {
-            System.out.println("\nLe jour est compris en 1 et 31\n");
+    static int saisie (String message) {
+        System.out.print("\n " + message + ": ");
+        int entier = sn.nextInt();
+
+        return entier;
+    }
+
+    static void validationDate(int jour, int mois, int annee) {
+
+        int jourMois = 0;
+
+        if (annee < 1900) {
+            System.out.println("\nL'année doit être supérieur ou égal à 1900\n");
         } else {
-            System.out.print("\nEntrez une date (Mois): ");
-            int mois = sn.nextInt();
 
-            if (mois < 1 || mois > 12) {
-                System.out.println("\nLe mois est compris entre 1 et 12\n"); 
-            } else {
-                if (jour == 31 && mois == 4 || jour == 31 && mois == 6 || jour == 31 && mois == 9 || jour == 31 && mois == 11) {
-
-                    System.out.println("\nPeu importe l'année, ce mois se limite toujours à 3O jours \n");
-                    
-                } else {
-                    if (jour > 29 && mois == 2) {
-                        System.out.println("\nPeu importe l'année, ce mois ne dépasse jamais 29 jours \n");
+            switch (mois) {
+                case 1:
+                    jourMois = 31;
+                    break;
+                case 2:
+                    if (annee % 4 == 0 && annee % 100 != 0 || annee % 400 == 0) {
+                        jourMois = 29;
                     } else {
-                        System.out.print("\nEntrez une date (Année): ");
-                        int annee = sn.nextInt();
-
-                        if (annee < 1900) {
-                            System.out.println("\nL'année doit être supérieur ou égal à 1900\n");
-                        } else {
-                            if (mois == 2 && jour == 29) {
-                                if (annee % 4 == 0) {
-                                    if (annee % 100 != 0) {
-                                        System.out.println("\nCette date : " + jour + " / " + mois + " / " + annee + " est valide\n");
-                                    } else 
-                                        if(annee % 400 == 0) {
-                                            System.out.println("\nCette date : " + jour + " / " + mois + " / " + annee + " est valide\n");
-                                        } else
-                                            System.out.println("\nCette date : " + jour + " / " + mois + " / " + annee + " n'est pas valide\n");
-                                } else
-                                    System.out.println("\nCette date : " + jour + " / " + mois + " / " + annee + " n'est pas valide\n");
-
-                            
-                            } else
-                                System.out.println("\nCette date : " + jour + " / " + mois + " / " + annee + " est valide\n");
-                        }
+                        jourMois = 28;
                     }
-                    
-                }
+                    break;
+                case 3:
+                    jourMois = 31;
+                    break;
+                case 4:
+                    jourMois = 30;
+                    break;
+                case 5:
+                    jourMois = 31;
+                    break;
+                case 6:
+                    jourMois = 30;
+                    break;
+                case 7:
+                    jourMois = 31;
+                    break;
+                case 8:
+                    jourMois = 31;
+                    break;
+                case 9:
+                    jourMois = 30;
+                    break;
+                case 10:
+                    jourMois = 31;
+                    break;
+                case 11:
+                    jourMois = 30;
+                    break;
+                case 12:
+                    jourMois = 31;
+                    break;
+                default:
+                    System.out.println("\nLe mois est compris entre 1 et 12\n");
+                    break;
             }
 
+            if(jour <= jourMois)
+                System.out.println("\nCette date : " + jour + " / " + mois + " / " + annee + " est valide\n");
+            else
+                System.out.println("\nCette date : " + jour + " / " + mois + " / " + annee + " n'est pas valide\n");
         }
-
-        sn.close();
-
     }
 }

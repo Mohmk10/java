@@ -7,12 +7,22 @@ import java.util.Scanner;
  */
 
 public class App {
+
+    static Scanner sn = new Scanner(System.in);
     public static void main(String[] args) throws Exception {
 
-        Scanner sn =new Scanner(System.in);
+        int entier = saisie("Entrez un entier");
+        sommeEntiers(entier);
+    }
 
-        System.out.print("\nEntrez un entier: ");
+    static int saisie(String message) {
+        System.out.print("\n" + message + ": ");
         int entier = sn.nextInt();
+
+        return entier;
+    }
+
+    static void sommeEntiers(int entier) {
 
         int a = 0;
         int nombre = 0;
@@ -26,7 +36,5 @@ public class App {
 
         System.out.println("\nLa somme des entiers de 1 à " + entier + " est: " + a + "\n");
         System.out.println("La moyenne est: " + moyenne + "\n");
-
-        sn.close();
     }
 }

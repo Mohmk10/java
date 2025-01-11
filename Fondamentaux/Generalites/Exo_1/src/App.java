@@ -9,27 +9,34 @@ import java.util.Scanner;
 
 
 public class App {
+
+   static Scanner scn = new Scanner(System.in);
+
    public static void main(String[] args) throws Exception {
 
-    Scanner scn = new Scanner(System.in);
+      int a = saisie('a');
+      int b = saisie('b');
 
-    System.out.print("Entrez un entier a: ");
-    int a = scn.nextInt();
-    System.out.print("Entrez un entier b: ");
-    int b = scn.nextInt();
+      quotientEntierReelModulo(a, b);
 
-    float quotientReel = (float) a / b;
-    int quotientEntier = (int) quotientReel;
-    int modulo = a % b;
-
-    System.out.println();
-    
-    System.out.println("Quotient entier: " + quotientEntier);
-    System.out.println("Ratio (Qutient réel) : " + quotientReel);
-    System.out.println("Reste (Modulo) : " + modulo);
-
-    scn.close();
    }
+
+   static int saisie(char car) {
+      System.out.print("Entrez un entier " + car + " : ");
+      int entier = scn.nextInt();
+
+      return entier;
+   }
+
+   static void quotientEntierReelModulo(int a, int b) {
+
+      float quotientReel = (float) a / b;
+      int quotientEntier = (int) quotientReel;
+      int modulo = a % b;
+    
+      System.out.println("\nQuotient entier: " + quotientEntier);
+      System.out.println("\nRatio (Qutient réel) : " + quotientReel);
+      System.out.println("\nReste (Modulo) : " + modulo + "\n");
+   }
+
 }
-
-

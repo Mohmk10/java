@@ -5,70 +5,68 @@ import java.util.Scanner;
  */
 
  public class App {
+
+    static Scanner scn = new Scanner(System.in);
     public static void main(String[] args) throws Exception {
 
-        Scanner scn = new Scanner(System.in);
+        int entierA = saisie("Entrez un entier A");
+        int entierB = saisie("Entrez un entier B");
+        int entierC = saisie("Entrez un entier C");
 
+        comparaison(entierA, entierB, entierC);
+    }
 
-        System.out.print("\nEntrez un entier A: ");
-        int entierA = scn.nextInt();
+    static int saisie (String message) {
+        System.out.print("\n " + message + ": ");
+        int entier = scn.nextInt();
 
-        System.out.print("\nEntrez un entier B: ");
-        int entierB = scn.nextInt();
+        return entier;
+    }
 
-        System.out.print("\nEntrez un entier C: ");
-        int entierC = scn.nextInt();
+    static void comparaison(int a, int b, int c) {
 
-        if (entierA > entierB && entierA > entierC && entierB > entierC) {
-                System.out.println("\nOrdre décroissant\n");
-                System.out.println(entierA + "\n" + entierB + "\n" + entierC + "\n");
-                System.out.println("\nOrdre croissant\n");
-                System.out.println(entierC + "\n" + entierB + "\n" + entierA);
-                
+        int nombreMin = 0, nombreMax = 0, nombreMoy = 0;
+
+        if (a > b && a > c) {
+            nombreMax = a;
+
+            if (b > c) {
+                nombreMoy = b;
+                nombreMin = c;
             } else {
-                if (entierA > entierB && entierA > entierC && entierC > entierB) {
-                    System.out.println("\nOrdre décroissant\n");
-                    System.out.println(entierA + "\n" + entierC + "\n" + entierB + "\n");
-                    System.out.println("\nOrdre croissant\n");
-                    System.out.println(entierB + "\n" + entierC + "\n" + entierA );
-
-                } else {
-                    if (entierB > entierA && entierB > entierC && entierA > entierC) {
-                        System.out.println("\nOrdre décroissant\n");
-                        System.out.println(entierB + "\n" + entierA + "\n" + entierC + "\n");
-                        System.out.println("\nOrdre croissant\n");
-                        System.out.println(entierC + "\n" + entierA + "\n" + entierB );
-                        
-                    } else {
-                        if (entierB > entierA && entierB > entierC && entierC > entierA) {
-                            System.out.println("\nOrdre décroissant\n");
-                            System.out.println(entierB + "\n" + entierC + "\n" + entierA + "\n");
-                            System.out.println("\nOrdre croissant\n");
-                            System.out.println(entierA + "\n" + entierC + "\n" + entierB );
-                            
-                        } else {
-                            if (entierC > entierA && entierC > entierB && entierA > entierB) {
-                                System.out.println("\nOrdre décroissant\n");
-                                System.out.println(entierC + "\n" + entierA + "\n" + entierB + "\n");
-                                System.out.println("\nOrdre croissant\n");
-                                System.out.println(entierB + "\n" + entierA + "\n" + entierC );
-                                
-                            } else {
-                                if (entierC > entierA && entierC > entierB && entierB > entierA) {
-                                    System.out.println("\nOrdre décroissant\n");
-                                    System.out.println(entierC + "\n" + entierB + "\n" + entierA + "\n");
-                                    System.out.println("\nOrdre croissant\n");
-                                    System.out.println(entierA + "\n" + entierB + "\n" + entierC );
-                                    
-                                } else
-                                System.out.println("Les trois entiers sont égaux !");
-                            }
-                        }
-                    }
-                }
+                nombreMoy = c;
+                nombreMin = b;
             }
-        scn.close();
-    } 
 
+        } else
+            if (b > a && b > c) {
+                nombreMax = b;
+
+                if (a > c) {
+                    nombreMoy = a;
+                    nombreMin = c;
+                } else {
+                    nombreMoy = c;
+                    nombreMin = a;
+                }
+                
+            } else
+                if (c > a && c > b) {
+                    nombreMax = c;
+
+                    if (a > b) {
+                        nombreMoy = a;
+                        nombreMin = b;
+                    } else {
+                        nombreMoy = b;
+                        nombreMin = a;
+                    }
+            }
+
+            System.out.println("\nOrdre croissant\n");
+            System.out.println(nombreMin + "\n" + nombreMoy + "\n" + nombreMax );
+            System.out.println("\nOrdre décroissant\n");
+            System.out.println(nombreMax + "\n" + nombreMoy + "\n" +nombreMin + "\n");
+    }
 }
 

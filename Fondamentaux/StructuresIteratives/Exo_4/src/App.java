@@ -6,43 +6,45 @@ import java.util.Scanner;
  */
 
 public class App {
+
+    static Scanner sn = new Scanner(System.in);
     public static void main(String[] args) throws Exception {
 
-        Scanner sn = new Scanner(System.in);
-
         System.out.println("\nCalcul de PGCD de deux entiers");
-        
-        System.out.print("\nEntrez un entier a: ");
-        int a = sn.nextInt();
+
+        int a = saisie("Entrez un entier a");
+        int b = saisie("Entrez un entier b");
+
+        calculPgcd(a, b);
+    }
+
+    static int saisie(String message) {
+        System.out.print("\n" + message + ": ");
+        int entier = sn.nextInt();
+
+        return entier;
+    }
+
+    static void calculPgcd (int a, int b) {
+        int pgcd = 0;
 
         if (a < 0) {
             System.out.println("\na doit être supérieur à zero '0' \n");
         } else {
-            System.out.print("\nEntrez un entier b: ");
-            int b = sn.nextInt();
-
             if (b < 0) {
                 System.out.println("\nb doit être supérieur à zero '0' \n");
             } else {
-
-                int x = a;
+                pgcd = a;
                 int y = b;
+                int reste;
 
-                while (x != y) {
-
-                    if (x > y) {
-                        x = x - y;
-                    }
-
-                    if (y > x) {
-                        y = y - x;
-                    }
+                while (y != 0) {
+                    reste = pgcd % y;
+                    pgcd = y;
+                    y = reste;
                 }
-
-                System.out.println("\nLe PGCD de " + a + " et " + b + " est: " + x + "\n");
+                System.out.println("\nLe PGCD de " + a + " et " + b + " est: " + pgcd + "\n");
             }
         }
-
-        sn.close();
     }
 }

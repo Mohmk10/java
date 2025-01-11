@@ -10,23 +10,30 @@ import java.util.Scanner;
  * P = 2 × π × a
  */
 public class App {
+
+    static Scanner scn = new Scanner(System.in);
     public static void main(String[] args) throws Exception {
 
+        float rayon = saisie();
+        surfacePerimetreCerle(rayon);
+
+        
+    }
+
+    static float saisie() {
+        System.out.print("\nEntrez le rayon: ");
+        float entier = scn.nextInt();
+
+        return entier;
+    }
+
+    static void surfacePerimetreCerle(float rayon) {
         final float PI =  3.14f;
 
-        Scanner scn = new Scanner(System.in);
+        float surface = PI * (rayon * rayon);
+        float perimetre = 2 * PI * rayon;
 
-        System.out.print("Entrez le rayon: ");
-        float a = scn.nextFloat();
-
-        float surface = PI * (a * a);
-        float perimetre = 2 * PI * a;
-
-        System.out.println();
-
-        System.out.println("Sa surface: " + surface);
-        System.out.println("Son périmètre: " + perimetre);
-
-        scn.close();
+        System.out.println("\nSa surface: " + surface + "\n");
+        System.out.println("\nSon périmètre: " + perimetre + "\n");
     }
 }

@@ -4,203 +4,109 @@ import java.util.Scanner;
  *  Faire un programme qui saisit une date (jour, mois et année) puis  détermine  et affiche la date précédente
  */
 
-public class App {
-    public static void main(String[] args) throws Exception {
+ public class App {
 
-        Scanner sn = new Scanner(System.in);
+    static Scanner sn = new Scanner(System.in);
+    public static void main(String[] args) throws Exception {
 
         System.out.println("\nDate précedente\n");
 
-        System.out.print("Entrez une date (Jour): ");
-        int jour = sn.nextInt();
+        int jour = saisie("Entrez une date (Jour)");
+        int mois = saisie("Entrez une date (Mois)");
+        int annee = saisie("Entrez une date (Année)");
 
-        if (jour < 1 || jour > 31) {
-            System.out.println("\nLe jour est compris en 1 et 31\n");
+        datePrecedente(jour, mois, annee);
+    }
+
+    static int saisie (String message) {
+        System.out.print("\n " + message + ": ");
+        int entier = sn.nextInt();
+
+        return entier;
+    }
+
+    static void datePrecedente(int jour, int mois, int annee) {
+
+        int jourMois = 0;
+
+        if (annee < 1900) {
+            System.out.println("\nL'année doit être supérieur ou égal à 1900\n");
         } else {
-            System.out.print("\nEntrez une date (Mois): ");
-            int mois = sn.nextInt();
 
-            if (mois < 1 || mois > 12) {
-                System.out.println("\nLe mois est compris entre 1 et 12\n"); 
-            } else {
-                if (jour == 31 && mois == 4 || jour == 31 && mois == 6 || jour == 31 && mois == 9 || jour == 31 && mois == 11) {
-
-                    System.out.println("\nPeu importe l'année, ce mois se limite toujours à 3O jours \n");
-                    
-                } else {
-                    if (jour > 29 && mois == 2) {
-
-                        System.out.println("\nPeu importe l'année, ce mois ne dépasse jamais 29 jours \n");
-
+            switch (mois) {
+                case 1:
+                    jourMois = 31;
+                    break;
+                case 2:
+                    if (annee % 4 == 0 && annee % 100 != 0 || annee % 400 == 0) {
+                        jourMois = 29;
                     } else {
-
-                        System.out.print("\nEntrez une date (Année): ");
-                        int annee = sn.nextInt();
-
-                        if (annee < 1900) {
-
-                            System.out.println("\nL'année doit être supérieur ou égal à 1900\n");
-                            
-                        } else {
-                            switch (mois) {
-                                case 1:
-                                    if (jour == 1) {
-                                        System.out.println("\nLa date entrée: " + jour + " / " + mois + " / " + annee + "\n");
-                                        annee--;
-                                        System.out.println("La date précedente: 31 / 12 / " + annee + "\n");
-                                    } else {
-                                        System.out.println("\nLa date entrée: " + jour + " / " + mois + " / " + annee + "\n");
-                                        jour--;
-                                        System.out.println("La date précedente: " + jour + " / " + mois + " / " + annee + "\n");
-                                    }
-                                    break;
-                                case 2:
-                                    if (jour == 29) {
-                                        if (annee % 4 == 0) {
-                                            if (annee % 100 != 0) {
-                                                System.out.println("\nLa date entrée: " + jour + " / " + mois + " / " + annee + "\n");
-                                                System.out.println("La date précedente: 28 / 2 / " + annee + "\n");
-                                            } else 
-                                                if(annee % 400 == 0) {
-                                                    System.out.println("\nLa date entrée: " + jour + " / " + mois + " / " + annee + "\n");
-                                                    System.out.println("La date précedente: 28 / 2 / " + annee + "\n");
-                                                } else
-                                                    System.out.println("\nCette date : " + jour + " / " + mois + " / " + annee + " n'est pas valide\n");
-                                        } else
-                                            System.out.println("\nCette date : " + jour + " / " + mois + " / " +  annee + " n'est pas valide\n");
-                                    } else {
-                                        if (jour == 1) {
-                                            System.out.println("\nLa date entrée: " + jour + " / " + mois + " / " + annee + "\n");
-                                            System.out.println("La date précedente: 31 / 1 / " + annee + "\n");
-                                        } else {
-                                            System.out.println("\nLa date entrée: " + jour + " / " + mois + " / " + annee + "\n");
-                                            jour--;
-                                            System.out.println("La date précedente: " + jour + " / " + mois + " / " + annee + "\n");
-                                        }
-                                    } 
-                                    break;
-                                case 3:
-                                    if (jour == 1) {
-                                        if (annee % 4 == 0) {
-                                            if (annee % 100 != 0) {
-                                                System.out.println("\nLa date entrée: " + jour + " / " + mois + " / " + annee + "\n");
-                                                System.out.println("La date précedente: 29 / 2 / " + annee + "\n");
-                                            } else 
-                                                if(annee % 400 == 0) {
-                                                    System.out.println("\nLa date entrée: " + jour + " / " + mois + " / " + annee + "\n");
-                                                    System.out.println("La date précedente: 29 / 2 / " + annee + "\n");
-                                                } else
-                                                    System.out.println("La date précedente: 28 / 2 / " + annee + "\n");
-                                        } else
-                                            System.out.println("La date précedente: 28 / 2 / " + annee + "\n");
-                                    } else {
-                                        System.out.println("\nLa date entrée: " + jour + " / " + mois + " / " + annee + "\n");
-                                        jour--;
-                                        System.out.println("La date précedente: " + jour + " / " + mois + " / " + annee + "\n");
-                                    }
-                                    break;
-                                case 4:
-                                    if (jour == 1) {
-                                        System.out.println("\nLa date entrée: " + jour + " / " + mois + " / " + annee + "\n");
-                                        System.out.println("La date précedente: 31 / 3 / " + annee + "\n");
-                                    } else {
-                                        System.out.println("\nLa date entrée: " + jour + " / " + mois + " / " + annee + "\n");
-                                        jour--;
-                                        System.out.println("La date précedente: " + jour + " / " + mois + " / " + annee + "\n");
-                                    }
-                                    break;
-                                case 5:
-                                    if (jour == 1) {
-                                        System.out.println("\nLa date entrée: " + jour + " / " + mois + " / " + annee + "\n");
-                                        System.out.println("La date précedente: 30 / 4 / " + annee + "\n");
-                                    } else {
-                                        System.out.println("\nLa date entrée: " + jour + " / " + mois + " / " + annee + "\n");
-                                        jour--;
-                                        System.out.println("La date précedente: " + jour + " / " + mois + " / " + annee + "\n");
-                                    }
-                                    break;
-                                case 6:
-                                    if (jour == 1) {
-                                        System.out.println("\nLa date entrée: " + jour + " / " + mois + " / " + annee + "\n");
-                                        System.out.println("La date précedente: 31 / 5 / " + annee + "\n");
-                                    } else {
-                                        System.out.println("\nLa date entrée: " + jour + " / " + mois + " / " + annee + "\n");
-                                        jour--;
-                                        System.out.println("La date précedente: " + jour + " / " + mois + " / " + annee + "\n");
-                                    }
-                                    break;
-                                case 7:
-                                    if (jour == 1) {
-                                        System.out.println("\nLa date entrée: " + jour + " / " + mois + " / " + annee + "\n");
-                                        System.out.println("La date précedente: 30 / 6 / " + annee + "\n");
-                                    } else {
-                                        System.out.println("\nLa date entrée: " + jour + " / " + mois + " / " + annee + "\n");
-                                        jour--;
-                                        System.out.println("La date précedente: " + jour + " / " + mois + " / " + annee + "\n");
-                                    }
-                                    break;
-                                case 8:
-                                    if (jour == 1) {
-                                        System.out.println("\nLa date entrée: " + jour + " / " + mois + " / " + annee + "\n");
-                                        System.out.println("La date précedente: 31 / 7 / " + annee + "\n");
-                                    } else {
-                                        System.out.println("\nLa date entrée: " + jour + " / " + mois + " / " + annee + "\n");
-                                        jour--;
-                                        System.out.println("La date précedente: " + jour + " / " + mois + " / " + annee + "\n");
-                                    }
-                                    break;
-                                case 9:
-                                    if (jour == 1) {
-                                        System.out.println("\nLa date entrée: " + jour + " / " + mois + " / " + annee + "\n");
-                                        System.out.println("La date précedente: 31 / 8 / " + annee + "\n");
-                                    } else {
-                                        System.out.println("\nLa date entrée: " + jour + " / " + mois + " / " + annee + "\n");
-                                        jour--;
-                                        System.out.println("La date précedente: " + jour + " / " + mois + " / " + annee + "\n");
-                                    }
-                                    break;
-                                case 10:
-                                    if (jour == 1) {
-                                        System.out.println("\nLa date entrée: " + jour + " / " + mois + " / " + annee + "\n");
-                                        System.out.println("La date précedente: 30 / 9 / " + annee + "\n");
-                                    } else {
-                                        System.out.println("\nLa date entrée: " + jour + " / " + mois + " / " + annee + "\n");
-                                        jour--;
-                                        System.out.println("La date précedente: " + jour + " / " + mois + " / " + annee + "\n");
-                                    }
-                                    break;
-                                case 11:
-                                    if (jour == 1) {
-                                        System.out.println("\nLa date entrée: " + jour + " / " + mois + " / " + annee + "\n");
-                                        System.out.println("La date précedente: 31 / 10 / " + annee + "\n");
-                                    } else {
-                                        System.out.println("\nLa date entrée: " + jour + " / " + mois + " / " + annee + "\n");
-                                        jour--;
-                                        System.out.println("La date précedente: " + jour + " / " + mois + " / " + annee + "\n");
-                                    }
-                                    break;
-                                case 12:
-                                    if (jour == 1) {
-                                        System.out.println("\nLa date entrée: " + jour + " / " + mois + " / " + annee + "\n");
-                                        System.out.println("La date précedente: 30 / 11 / " + annee + "\n");
-                                    } else {
-                                        System.out.println("\nLa date entrée: " + jour + " / " + mois + " / " + annee + "\n");
-                                        jour--;
-                                        System.out.println("La date précedente: " + jour + " / " + mois + " / " + annee + "\n");
-                                    }
-                                    break;
-                                default:
-                                    break;
-                            }
-                        }
+                        jourMois = 28;
                     }
-                    
-                }
+                    break;
+                case 3:
+                    jourMois = 31;
+                    break;
+                case 4:
+                    jourMois = 30;
+                    break;
+                case 5:
+                    jourMois = 31;
+                    break;
+                case 6:
+                    jourMois = 30;
+                    break;
+                case 7:
+                    jourMois = 31;
+                    break;
+                case 8:
+                    jourMois = 31;
+                    break;
+                case 9:
+                    jourMois = 30;
+                    break;
+                case 10:
+                    jourMois = 31;
+                    break;
+                case 11:
+                    jourMois = 30;
+                    break;
+                case 12:
+                    jourMois = 31;
+                    break;
+                default:
+                    System.out.println("\nLe mois est compris entre 1 et 12\n");
+                    break;
             }
 
+            if (jour > jourMois) {
+                System.out.println("\nLa date entrée n'est pas valide !\n");
+            } else
+                if(jour > 1)
+                    jour--;
+                else
+                    if (jour == 1 && mois != 1) {
+                        mois--;
+                        if (mois == 1 || mois == 3 || mois == 5 || mois == 7 || mois == 8 || mois == 10 || mois == 12) {
+                            jourMois = 31;
+                        } else if (mois == 4 || mois == 6 || mois == 9 || mois == 11) {
+                            jourMois = 31;
+                        } else if (mois == 2) {
+                            if (annee % 4 == 0 && (annee % 100 != 0 || annee % 400 == 0)) {
+                                jourMois = 29;
+                            } else {
+                                jourMois = 28;
+                            }
+                        }
+                        jour = jourMois;
+                    } else
+                        if (jour == 1 && mois == 1) {
+                            annee--;
+                            mois = 12;
+                            jour = 31;
+                        }
+
+            System.out.println("\nLa date précedente est: " + jour + " / " + mois + " / " + annee + "\n");
         }
-
-        sn.close();
-
     }
 }

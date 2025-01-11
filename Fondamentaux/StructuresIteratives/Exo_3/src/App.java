@@ -5,17 +5,26 @@ import java.util.Scanner;
  */
 
 public class App {
-    public static void main(String[] args) throws Exception {
 
-        Scanner sn = new Scanner(System.in);
+    static Scanner sn = new Scanner(System.in);
+    public static void main(String[] args) throws Exception {
 
         System.out.println("Division par soustractions successives");
 
-        System.out.print("\nEntrez un entier a: ");
-        int a = sn.nextInt();
+        int a = saisie("Entrez un entier a");
+        int b = saisie("Entrez un entier b");
 
-        System.out.print("\nEntrez un entier b: ");
-        int b = sn.nextInt();
+        divisionParSoustraction(a, b);
+    }
+
+    static int saisie(String message) {
+        System.out.print("\n" + message + ": ");
+        int entier = sn.nextInt();
+
+        return entier;
+    }
+
+    static void divisionParSoustraction(int a, int b) {
 
         if (b == 0) {
             System.out.println("b doit être différent de zéro '0' ");
@@ -33,7 +42,5 @@ public class App {
 
             System.out.println("\n" + a + " ÷ " + b +" = " + qutient + " avec un reste de "+ reste + "\n");
         }
-
-        sn.close();
     }
 }

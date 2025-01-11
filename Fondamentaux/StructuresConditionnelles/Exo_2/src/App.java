@@ -7,53 +7,53 @@ import java.util.Scanner;
  */
 
 public class App {
+
+    static Scanner scn = new Scanner (System.in);
     public static void main(String[] args) throws Exception {
 
-        Scanner scn = new Scanner (System.in);
+        int entier1 = saisie("Entrez le 1er entier");
 
-        System.out.print("Entrez le 1er entier: ");
-        int entier1 = scn.nextInt();
+        System.out.println("\na - Addition '+' ");
+        System.out.println("\ns - Soustraction '-' ");
+        System.out.println("\nm - Multiplation '*' ");
+        System.out.println("\nd - Division '/' ");
 
-        System.out.println("a - Addition '+' ");
-        System.out.println("s - Soustraction '-' ");
-        System.out.println("m - Multiplation '*' ");
-        System.out.println("d - Division '/' ");
+        System.out.print("\nChoisissez l'opérateur: ");
+        String op = scn.next();
 
-        System.out.println();
+        calculatrice(entier1, op);
 
-        System.out.print("Choisissez l'opérateur: ");
-        String input = scn.next();
+    }
 
-        System.out.println();
+    static int saisie(String message) {
+        System.out.print("\n " + message + ": " );
+        int entier = scn.nextInt();
 
-        // input.compareTo("a") == 0;
-        if (input.compareTo("a") == 0) {
-            System.out.print("Entrez le 2nd entier: ");
-            int entier2 = scn.nextInt();
+        return entier;
+    }
+
+    static void calculatrice(int entier1, String op) {
+
+        if (op.compareTo("a") == 0) {
+            int entier2 = saisie("Entrez le 2nd entier");
             int somme = entier1 + entier2;
-            System.out.println("La somme de " + entier1 + " et " + entier2 + " est: " + somme);
+            System.out.println("\nLa somme de " + entier1 + " et " + entier2 + " est: " + somme + "\n");
         } else
-            if (input.compareTo("s") == 0) {
-                System.out.print("Entrez le 2nd entier: ");
-                int entier2 = scn.nextInt();
+            if (op.compareTo("s") == 0) {
+                int entier2 = saisie("Entrez le 2nd entier");
                 int diff = entier1 - entier2;
-                System.out.println("La différence de " + entier1 + " et " + entier2 + " est: " + diff);
+                System.out.println("\nLa différence de " + entier1 + " et " + entier2 + " est: " + diff + "\n");
             } else
-                if (input.compareTo("m") == 0) {
-                    System.out.print("Entrez le 2nd entier: ");
-                    int entier2 = scn.nextInt();
+                if (op.compareTo("m") == 0) {
+                    int entier2 = saisie("Entrez le 2nd entier");
                     int produit = entier1 * entier2;
-                    System.out.println("Le produit de " + entier1 + " et " + entier2 + " est: " + produit);
+                    System.out.println("\nLe produit de " + entier1 + " et " + entier2 + " est: " + produit + "\n");
                 } else 
-                    if (input.compareTo("d") == 0) {
-                        System.out.print("Entrez le 2nd entier: ");
-                        int entier2 = scn.nextInt();
+                    if (op.compareTo("d") == 0) {
+                        int entier2 = saisie("Entrez le 2nd entier");
                         int quotient = entier1 / entier2;
-                        System.out.println("Le quotient de " + entier1 + " et " + entier2 + " est: " + quotient);
+                        System.out.println("\nLe quotient de " + entier1 + " et " + entier2 + " est: " + quotient + "\n");
                     } else
-                        System.out.println("Veuillez choisir un caractère pour éffectuer l'opération souhaitée");
-
-        scn.close();
-
+                        System.out.println("\nVeuillez choisir un caractère pour éffectuer l'opération souhaitée\n");
     }
 }

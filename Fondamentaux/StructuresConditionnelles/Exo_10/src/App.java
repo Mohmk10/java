@@ -5,29 +5,39 @@ import java.util.Scanner;
  * 
  * C1 : l'année est divisible par 4 sans être divisible par 100 (cas des années qui ne sont pas des multiples de 100) ;
  * C2 : l'année est divisible par 400 (cas des années multiples de 100).
+ * 
+ * >  !> = <=
+ * <  !< = >=
+ * == != = !=
+ * >= = <
+ * <= = >
+ * !&& = ||
+ * !|| = &&
  */
 
 public class App {
-    public static void main(String[] args) throws Exception {
 
-        Scanner sn = new Scanner(System.in);
+    static Scanner sn = new Scanner(System.in);
+    public static void main(String[] args) throws Exception {
 
         System.out.println("\nAnnée bissextile\n");
 
-        System.out.print("Entrez une anneée: ");
-        int annee = sn.nextInt();
+        int annee = saisie("Entrez une anneée");
+        anneeBissextile(annee);
+    }
 
-        if (annee % 4 == 0) {
-            if (annee % 100 != 0) {
-                System.out.println("\n" + annee + " est une année bissextile\n");
-            } else 
-                if(annee % 400 == 0) {
-                    System.out.println("\n" + annee + " est une année bissextile\n");
-                } else
-                    System.out.println("\n" + annee + " n'est pas une année bissextile\n");
-        } else
-            System.out.println("\n" + annee + " n'est pas une année bissextile\n");
+    static int saisie (String message) {
+        System.out.print("\n " + message + ": ");
+        int entier = sn.nextInt();
 
-        sn.close();
+        return entier;
+    }
+
+    static void anneeBissextile(int annee) {
+
+        if (annee % 4 == 0 && annee % 100 != 0 || annee % 400 == 0) {
+            System.out.println("\n" + annee +  " est une année bissextile\n");
+       } else
+           System.out.println("\n" + annee + " n'est pas une année bissextile\n");
     }
 }

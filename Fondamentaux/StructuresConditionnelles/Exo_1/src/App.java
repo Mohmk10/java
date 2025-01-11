@@ -9,40 +9,41 @@ import java.util.Scanner;
  */
 
 public class App {
+
+    static Scanner scn = new Scanner(System.in);
     public static void main(String[] args) throws Exception {
-        Scanner scn = new Scanner(System.in);
 
-        System.out.print("Entrez la resistance R1: ");
-        float r1 = scn.nextFloat();
-        System.out.print("Entrez la resistance R2: ");
-        float r2 = scn.nextFloat();
-        System.out.print("Entrez la resistance R3: ");
-        float r3 = scn.nextFloat();
+        float r1 = saisie("Entrez la resistance R1");
+        float r2 = saisie("Entrez la resistance R2");
+        float r3 = saisie("Entrez la resistance R3");
 
-        System.out.println();
+        System.out.println("\n1 - Résistance en serie");
+        System.out.println("\n2 - Résistance en parallèle");
 
-        System.out.println("1 - Résistance en serie");
-        System.out.println("2 - Résistance en parallèle");
+        float choix = saisie("Faites un choix");
 
-        System.out.println();
+        resistances(r1, r2, r3, choix);
 
-        System.out.print("Faites un choix: ");
-        int choix = scn.nextInt();
+    }
 
-        System.out.println();
+    static float saisie(String message) {
+        System.out.print("\n " + message + ": " );
+        float entier = scn.nextInt();
 
+        return entier;
+    }
+
+    static void resistances(float r1, float r2, float r3, float choix) {
         if (choix == 1) {
             float resistanceSerie = r1 + r2 + r3;
-            System.out.println("Résitance en serie: " + resistanceSerie);
+            System.out.println("\nLa résistance en serie: " + resistanceSerie + "\n");
         } else {
             if (choix == 2) {
                 float resistanceParallele = (r1 * r2 * r3) / (r1 * r2 + r2 * r3 + r1 * r3);
-                System.out.println("Résitance en parallèle: " + resistanceParallele);
+                System.out.println("\nLa résistance en parallèle: " + resistanceParallele + "\n");
             } else 
                 System.out.println("Veuillez choisir 1 ou 2");
         }
-
-        scn.close();
-
+        
     }
 }

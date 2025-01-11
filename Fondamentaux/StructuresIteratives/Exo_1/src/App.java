@@ -7,13 +7,24 @@ import java.util.Scanner;
  */
 
 public class App {
+
+    static Scanner sn = new Scanner(System.in);
     public static void main(String[] args) throws Exception {
 
-        Scanner sn = new Scanner(System.in);
+        System.out.println("\n Entier Parfait");
+        int entier = saisie("Entrez un entier");
 
-        System.out.print("\nEntrez un entier: ");
+        entierParfait(entier);
+    }
+
+    static int saisie(String message) {
+        System.out.print("\n" + message + ": ");
         int entier = sn.nextInt();
 
+        return entier;
+    }
+
+    static void entierParfait(int entier) {
         int a = 0;
 
         for(int i = 1; i < entier; i++) {
@@ -25,8 +36,6 @@ public class App {
         if (a == entier)
             System.out.println("\n" + entier + " est un entier parfait\n");
         else
-            System.out.println("\nCet entier n'est pas parfait\n");
-        
-        sn.close();
+            System.out.println("\n" + entier + " n'est pas un entier parfait\n");
     }
 }

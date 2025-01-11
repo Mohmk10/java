@@ -7,28 +7,31 @@ import java.util.Scanner;
  */
 
 public class App {
+
+    static Scanner scn = new Scanner(System.in);
     public static void main(String[] args) throws Exception {
 
-        Scanner scn = new Scanner(System.in);
+        System.out.println("\nCoordonées du point A");
+        float x1 = saisie("Entrez x1");
+        float y1 = saisie("Entrez y1");
+        System.out.println("\nCoordonées du point B");
+        float x2 = saisie("Entrez x2");
+        float y2 = saisie("Entrez y2");
 
-        System.out.println("Coordonées du point A");
-        System.out.print("Entrez x1: ");
-        float x1 = scn.nextFloat();
-        System.out.print("Entrez y1: ");
-        float y1 = scn.nextFloat();
-        System.out.println("Coordonées du point B");
-        System.out.print("Entrez x2: ");
-        float x2 = scn.nextFloat();
-        System.out.print("Entrez y2: ");
-        float y2 = scn.nextFloat();
+        distance(x1, y1, x2, y2);
 
+    }
+
+    static float saisie(String message) {
+        System.out.print("\n " + message + ": " );
+        float entier = scn.nextInt();
+
+        return entier;
+    }
+
+    static void distance(float x1, float y1, float x2, float y2) {
         float distance = (float) Math.sqrt((((x1 - x2) * (x1 - x2)) + ((y1 - y2) * (y1 - y2))));
 
-        System.out.println();
-
-        System.out.println("La distance entre A et B est: " + distance + " m");
-
-        scn.close();
-
+        System.out.println("\nLa distance entre A et B est: " + distance + " m\n");
     }
 }

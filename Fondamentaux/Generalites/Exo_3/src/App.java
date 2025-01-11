@@ -11,17 +11,25 @@ import java.util.Scanner;
 
 
 public class App {
+
+    static Scanner scn = new Scanner(System.in);
     public static void main(String[] args) throws Exception {
 
-        Scanner scn = new Scanner(System.in);
+        float a = saisie();
+        conversion(a);
+    }
 
-        System.out.print("Entrez une temperature en °C: ");
-        float a = scn.nextFloat();
+    static float saisie() {
+        System.out.print("\nEntrez une temperature en °C: ");
+        float entier = scn.nextInt();
 
-        float fahrenheit = (float) (a * 9/5) + 32;
+        return entier;
+    }
 
-        System.out.println(a +"°C" + " = " + fahrenheit + "°F" );
+    static void conversion(float entier) {
 
-        scn.close();
+        float fahrenheit = (float) (entier * 9/5) + 32;
+
+        System.out.println("\n" + entier +" °C" + " = " + fahrenheit + " °F\n" );
     }
 }

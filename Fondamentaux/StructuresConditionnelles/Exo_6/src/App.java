@@ -29,65 +29,63 @@ import java.util.Scanner;
  */
 
 public class App {
+
+    static Scanner scn = new Scanner(System.in);
     public static void main(String[] args) throws Exception {
 
-        Scanner scn = new Scanner(System.in);
+        int montant = saisie("Entrez un montant");
 
-        System.out.print("\nEntrez un montant: ");
-        int montant = scn.nextInt();
+        decomposition(montant);
+    }
+    
 
-        int billet20 = montant / 20;
-        int R1 = montant - (billet20 * 20);
+    static int saisie(String message) {
+        System.out.print("\n " + message + ": " );
+        int entier = scn.nextInt();
 
-        if (R1 == 0) {
-            System.out.println("Le montant fait " + billet20 + " billet(s) de 20");
-        } else {
-            int billet10 = R1 / 10;
-            int R2 = R1 - (billet10 * 10);
+        return entier;
+    }
 
-            if (R2 == 0) {
-                System.out.println(
-                "\nLe montant " + montant + " fait: \n\n" +
-                billet20 + " billet(s) de 20 \n\n" + 
-                billet10 + " billet(s) de 10 \n\n"
-                );
-            } else {
-                int billet5 = R2 / 5;
-                int R3 = R2 - (billet5 * 5);
+    static void decomposition (int montant) {
 
-                if (R3 == 0) {
-                    System.out.println(
-                        "\nLe montant " + montant + " fait: \n\n" +
-                        billet20 + " billet(s) de 20 \n\n" + 
-                        billet10 + " billet(s) de 10 \n\n" +
-                        billet5 + " billet(s) de 5 \n\n"
-                        );
-                } else {
-                    int pieces2 = R3 / 2;
-                    int R4 = R3 - (pieces2 * 2);
+        int billet20 = 0;
+        int billet10 = 0;
+        int billet5 = 0;
+        int pieces2 = 0;
+        int piece1 = 0;
 
-                    if (R4 == 0) {
-                        System.out.println(
-                        "\nLe montant " + montant + " fait: \n\n" + 
-                        billet20 + " billet(s) de 20 \n\n" + 
-                        billet10 + " billet(s) de 10 \n\n" +
-                        billet5 + " billet(s) de 5 \n\n" + 
-                        pieces2 + " pièce(s) de 2 \n\n"
-                        );
-                    } else
-                        System.out.println(
-                        "\nLe montant " + montant + " fait: \n\n" + 
-                        billet20 + " billet(s) de 20 \n\n" + 
-                        billet10 + " billet(s) de 10 \n\n" +
-                        billet5 + " billet(s) de 5 \n\n" + 
-                        pieces2 + " pièce(s) de 2 \n\n" + 
-                        "1 piece de 1\n"
-                        );
+        if (montant > 20) {
+            billet20 = montant / 20;
+        }
+            montant = montant % 20;
 
-                }
-            }
+        if (montant >= 10) {
+            billet10 = montant / 10;
+        }
+            montant = montant % 10;
+
+        if (montant >= 5) {
+            billet5 = montant / 5;
+        }
+            montant = montant % 5;
+
+        if (montant >= 2) {
+            pieces2 = montant / 2;
+        }
+            montant = montant % 2;
+
+        if (montant == 1) {
+            piece1 = 1;
         }
 
-        scn.close();
+        System.out.println
+        (
+            "\nLe montant " + montant + " fait: \n\n" + 
+            billet20 + " billet(s) de 20 \n\n" + 
+            billet10 + " billet(s) de 10 \n\n" +
+            billet5 + " billet(s) de 5 \n\n" + 
+            pieces2 + " pièce(s) de 2 \n\n" + 
+            piece1 + " piece de 1\n"
+        );
     }
 }

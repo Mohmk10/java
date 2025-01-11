@@ -5,35 +5,39 @@ import java.util.Scanner;
  */
 
 public class App {
+
+    static Scanner scn = new Scanner(System.in);
     public static void main(String[] args) throws Exception {
 
-        Scanner scn = new Scanner(System.in);
+        int entierA = saisie("Entrez un entier A");
+        int entierB = saisie("Entrez un entier B");
 
+        comparaison(entierA, entierB);
+    }
 
-        System.out.print("\nEntrez un entier A: ");
-        int entierA = scn.nextInt();
+    static int saisie (String message) {
+        System.out.print("\n " + message + ": ");
+        int entier = scn.nextInt();
 
-        System.out.print("\nEntrez un entier B: ");
-        int entierB = scn.nextInt();
+        return entier;
+    }
 
+    static void comparaison(int a, int b) {
+
+        int nombreMin = 0, nombreMax = 0;
         
 
-        if (entierA < entierB) {
-            System.out.println("\nOrdre croissant\n");
-            System.out.println(entierA + "\n" + entierB );
-            System.out.println("\nOrdre décroissant\n");
-            System.out.println(entierB + "\n" + entierA + "\n");
-        } else {
-            if (entierA > entierB) {
-                System.out.println("\nOrdre croissant\n");
-                System.out.println(entierB + "\n" + entierA );
-                System.out.println("\nOrdre décroissant\n");
-                System.out.println(entierA + "\n" + entierB + "\n");
-            } else 
-                System.out.println("\nCes deux entiers sont égaux\n");
+        if (a < b) {
+            nombreMin = a;
+            nombreMax = b;
             
-        } 
-
-        scn.close();
+        } else {
+            nombreMin = b;
+            nombreMax = a;
+        }
+            System.out.println("\nOrdre croissant\n");
+            System.out.println(nombreMin + "\n" + nombreMax );
+            System.out.println("\nOrdre décroissant\n");
+            System.out.println(nombreMax + "\n" + nombreMin + "\n");
     }
 }

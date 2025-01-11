@@ -13,26 +13,33 @@ import java.util.Scanner;
  */
 
 public class App {
+
+    static Scanner scn = new Scanner(System.in);
     public static void main(String[] args) throws Exception {
 
-        Scanner scn = new Scanner(System.in);
+        float entier = saisie("dm");
+        conversion(entier);
 
-        System.out.print("Donner une mesure en Decimetre (dm): ");
-        float a = scn.nextFloat();
+    }
 
-        float metre = (float) (a * 0.1);
-        float centiMetre = (float) (a * 10);
-        float milliMetre = (float) (a * 100);
-        float hectoMetre = (float) (a * 0.01);
+    static float saisie(String car) {
+        System.out.print("Donner une mesure en Decimetre (" + car + ") : ");
+        float entier = scn.nextInt();
 
-        System.out.println();
+        return entier;
+    }
 
-        System.out.println("Coversion en: ");
-        System.out.println("Metre (m): " + metre);
-        System.out.println("Centimetre (cm): " + centiMetre);
-        System.out.println("Millimetre (mm): " + milliMetre);
-        System.out.println("Hectometre (hm): " + hectoMetre);
+    static void conversion(float entier) {
 
-        scn.close();
+        float metre = (float) (entier * 0.1);
+        float centiMetre = (float) (entier * 10);
+        float milliMetre = (float) (entier * 100);
+        float hectoMetre = (float) (entier * 0.01);
+
+        System.out.println("\nCoversion en: ");
+        System.out.println("\nMetre (m): " + metre);
+        System.out.println("\nCentimetre (cm): " + centiMetre);
+        System.out.println("\nMillimetre (mm): " + milliMetre);
+        System.out.println("\nHectometre (hm): " + hectoMetre + "\n");
     }
 }
