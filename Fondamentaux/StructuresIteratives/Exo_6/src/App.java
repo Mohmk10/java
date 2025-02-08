@@ -13,7 +13,9 @@ public class App {
         System.out.println("\nSomme des prix d'articles");
         System.out.println("\nPour comptabiliser entrez zéro '0' ");
 
-        sommePrixArticles();
+        int somme = sommePrixArticles();
+
+        System.out.println("\nLa somme des prix d'articles est: " + somme + " franc CFA\n");
     }
 
     static int saisie(String message) {
@@ -23,7 +25,7 @@ public class App {
         return entier;
     }
 
-    static void sommePrixArticles() {
+    static int sommePrixArticles() {
 
         int prix;
         int somme = 0 ;
@@ -40,6 +42,6 @@ public class App {
 
         } while (prix != 0);
 
-        System.out.println("\nLa somme des prix d'articles est: " + somme + " franc CFA\n");
+        return somme;
     }
 }

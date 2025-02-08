@@ -18,7 +18,9 @@ public class App {
         float x2 = saisie("Entrez x2");
         float y2 = saisie("Entrez y2");
 
-        distance(x1, y1, x2, y2);
+        float distance = distance(x1, y1, x2, y2);
+
+        System.out.println("\nLa distance entre A et B est: " + distance + " m\n");
 
     }
 
@@ -29,9 +31,9 @@ public class App {
         return entier;
     }
 
-    static void distance(float x1, float y1, float x2, float y2) {
+    static float distance(float x1, float y1, float x2, float y2) {
         float distance = (float) Math.sqrt((((x1 - x2) * (x1 - x2)) + ((y1 - y2) * (y1 - y2))));
 
-        System.out.println("\nLa distance entre A et B est: " + distance + " m\n");
+        return distance;
     }
 }

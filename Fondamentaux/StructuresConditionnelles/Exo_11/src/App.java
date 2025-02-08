@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 /*
- * Faire un programme qui saisit une  année et un mois  puis   détermine et affiche le nombre de jours de ce mois dans cette année
+ * Faire un programme qui saisit une  année et un mois  puis détermine et affiche le nombre de jours de ce mois dans cette année
  */
 
 public class App {
@@ -24,7 +24,7 @@ public class App {
         return entier;
     }
 
-    static void jourMoisAnnee(int annee, int mois) {
+    static int jourMoisAnnee(int annee, int mois) {
 
         String moisLettre = "";
         int jourMois = 0;
@@ -39,11 +39,11 @@ public class App {
                     jourMois = 31;
                     break;
                 case 2:
-                    if (annee % 4 == 0 && annee % 100 != 0 || annee % 400 == 0) {
-                        moisLettre = "Février";
+                    moisLettre = "Février";
+                    boolean ok = anneeBissextile(annee);
+                    if (ok) {
                         jourMois = 29;
                     } else {
-                        moisLettre = "Février";
                         jourMois = 28;
                     }
                     break;
@@ -88,11 +88,25 @@ public class App {
                     jourMois = 31;
                     break;
                 default:
+                    moisLettre = "";
+                    jourMois = 0;
                     System.out.println("\nLe mois est compris entre 1 et 12\n");
                     break;
             }
 
             System.out.println("\nLe mois de " + moisLettre + " de l'année " + annee + " contient " + jourMois + " jours\n");
+
+        }
+
+        return jourMois;
+    }
+
+    static boolean anneeBissextile(int annee) {
+
+        if (annee % 4 == 0 && annee % 100 != 0 || annee % 400 == 0) {
+            return true;
+       } else {
+            return false;
         }
     }
 }

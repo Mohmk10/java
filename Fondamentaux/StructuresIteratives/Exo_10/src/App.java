@@ -9,6 +9,20 @@ import java.util.Scanner;
  * Les diviseurs de 48 sont: 2, 3, 4, 6, 8, 12, 16, 24 => 2 + 3 + 4 + 6 + 8 + 12 + 16 + 24 = 75
  * 
  * Les diviseurs de 75 sont : 3, 5, 15, 25 => 3 + 5 + 15 + 25 = 48
+ * 
+ * Quelques autres exemples pour tester l'algo : 
+ * 
+ * 140 et 195
+ * Diviseurs de 140 (sauf 1 et 140) : 2, 4, 5, 7, 10, 14, 20, 28, 35, 70 → Somme = 195
+ * Diviseurs de 195 (sauf 1 et 195) : 3, 5, 13, 15, 39, 65 → Somme = 140
+ * 
+ * 1050 et 1925
+ * Diviseurs de 1050 (sauf 1 et 1050) : 2, 3, 5, 6, 7, 10, 14, 15, 21, 25, 30, 35, 42, 50, 70, 75, 105, 150, 175, 210, 350, 525 → Somme = 1925
+ * Diviseurs de 1925 (sauf 1 et 1925) : 5, 7, 11, 25, 35, 55, 77, 175, 275, 385 → Somme = 1050
+ * 
+ * 2024 et 2295
+ * Diviseurs de 2024 (sauf 1 et 2024) : 2, 4, 8, 11, 22, 23, 44, 46, 88, 92, 184, 253, 506, 1012 → Somme = 2295
+ * Diviseurs de 2295 (sauf 1 et 2295) : 3, 5, 9, 15, 17, 27, 45, 51, 85, 135, 153, 255, 459, 765 → Somme = 2024
  */
 
 public class App {
@@ -24,7 +38,13 @@ public class App {
         int sommeEntierA = sommeEntier(entierA);
         int sommeEntierB = sommeEntier(entierB);
 
-        nombresAmis(entierA, entierB, sommeEntierA, sommeEntierB);
+        boolean ok = nombresAmis(entierA, entierB, sommeEntierA, sommeEntierB);
+
+        if (ok) {
+            System.out.println("\nCes deux entiers " + entierA + " et " + entierB + " sont AMIS\n");
+        } else {
+            System.out.println("\nCes deux entiers " + entierA + " et " + entierB + " ne sont pas AMIS\n");
+        }
     }
 
     static int saisie(String message) {
@@ -34,12 +54,13 @@ public class App {
         return entier;
     }
 
-    static void nombresAmis(int entierA, int entierB, int sommeEntierA, int sommeEntierB) {
+    static boolean nombresAmis(int entierA, int entierB, int sommeEntierA, int sommeEntierB) {
 
         if (sommeEntierA == entierB && sommeEntierB == entierA) {
-            System.out.println("\nCes deux entiers " + entierA + " et " + entierB + " sont AMIS\n");
-        } else
-            System.out.println("\nCes deux entiers " + entierA + " et " + entierB + " ne sont pas AMIS\n");
+            return true;
+        } else {
+            return false;
+        }
     }
 
     static int sommeEntier(int entier) {

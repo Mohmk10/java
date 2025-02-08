@@ -25,6 +25,15 @@ import java.util.Scanner;
         return entier;
     }
 
+    static boolean anneeBissextile(int annee) {
+    
+        if (annee % 4 == 0 && annee % 100 != 0 || annee % 400 == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     static void datePrecedente(int jour, int mois, int annee) {
 
         int jourMois = 0;
@@ -32,81 +41,41 @@ import java.util.Scanner;
         if (annee < 1900) {
             System.out.println("\nL'année doit être supérieur ou égal à 1900\n");
         } else {
-
-            switch (mois) {
-                case 1:
+            if (jour == 1 && mois != 1 || jour > 1) {
+                if (mois == 1 || mois == 3 || mois == 5 || mois == 7 || mois == 8 || mois == 10 || mois == 12) {
                     jourMois = 31;
-                    break;
-                case 2:
-                    if (annee % 4 == 0 && annee % 100 != 0 || annee % 400 == 0) {
+                } else if (mois == 4 || mois == 6 || mois == 9 || mois == 11) {
+                    jourMois = 31;
+                } else if (mois == 2) {
+                    boolean ok = anneeBissextile(annee);
+                    if (ok) {
                         jourMois = 29;
                     } else {
                         jourMois = 28;
                     }
-                    break;
-                case 3:
-                    jourMois = 31;
-                    break;
-                case 4:
-                    jourMois = 30;
-                    break;
-                case 5:
-                    jourMois = 31;
-                    break;
-                case 6:
-                    jourMois = 30;
-                    break;
-                case 7:
-                    jourMois = 31;
-                    break;
-                case 8:
-                    jourMois = 31;
-                    break;
-                case 9:
-                    jourMois = 30;
-                    break;
-                case 10:
-                    jourMois = 31;
-                    break;
-                case 11:
-                    jourMois = 30;
-                    break;
-                case 12:
-                    jourMois = 31;
-                    break;
-                default:
-                    System.out.println("\nLe mois est compris entre 1 et 12\n");
-                    break;
+                }
+                if (jour > 1 && jour <= jourMois) {
+                    jour--;
+                } else {
+                    if (jour == 1 && mois != 1 && jour < jourMois) {
+                        mois--;
+                        jour = jourMois;
+                    }
+                }
+                
+            } else {
+                if (jour == 1 && mois == 1) {
+                    annee--;
+                    mois = 12;
+                    jour = jourMois = 31;
+                }
             }
 
             if (jour > jourMois) {
                 System.out.println("\nLa date entrée n'est pas valide !\n");
-            } else
-                if(jour > 1)
-                    jour--;
-                else
-                    if (jour == 1 && mois != 1) {
-                        mois--;
-                        if (mois == 1 || mois == 3 || mois == 5 || mois == 7 || mois == 8 || mois == 10 || mois == 12) {
-                            jourMois = 31;
-                        } else if (mois == 4 || mois == 6 || mois == 9 || mois == 11) {
-                            jourMois = 31;
-                        } else if (mois == 2) {
-                            if (annee % 4 == 0 && (annee % 100 != 0 || annee % 400 == 0)) {
-                                jourMois = 29;
-                            } else {
-                                jourMois = 28;
-                            }
-                        }
-                        jour = jourMois;
-                    } else
-                        if (jour == 1 && mois == 1) {
-                            annee--;
-                            mois = 12;
-                            jour = 31;
-                        }
-
-            System.out.println("\nLa date précedente est: " + jour + " / " + mois + " / " + annee + "\n");
+            } else {
+                System.out.println("\nLa date précedente est: " + jour + " / " + mois + " / " + annee + "\n");
+            }
         }
     }
 }

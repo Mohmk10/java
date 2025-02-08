@@ -12,7 +12,12 @@ public class App {
     public static void main(String[] args) throws Exception {
 
         int entier = saisie("Entrez un entier");
-        sommeEntiers(entier);
+        
+        int a = sommeEntiers(entier);
+        float moyenne = moyenne(a, entier);
+
+        System.out.println("\nLa somme des entiers de 1 à " + entier + " est: " + a + "\n");
+        System.out.println("La moyenne est: " + moyenne + "\n");
     }
 
     static int saisie(String message) {
@@ -22,19 +27,22 @@ public class App {
         return entier;
     }
 
-    static void sommeEntiers(int entier) {
+    static int sommeEntiers(int entier) {
 
         int a = 0;
-        int nombre = 0;
 
         for (int i = 1; i <= entier; i++) {
             a += i;
-            nombre++;
         }
 
-        int moyenne = a / nombre;
-
-        System.out.println("\nLa somme des entiers de 1 à " + entier + " est: " + a + "\n");
-        System.out.println("La moyenne est: " + moyenne + "\n");
+        return a;
     }
+
+    static float moyenne (int somme, int entier) {
+
+        float moyenne = somme / entier;
+
+        return moyenne;
+    }
+    
 }

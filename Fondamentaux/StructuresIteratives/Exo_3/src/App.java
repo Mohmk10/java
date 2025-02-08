@@ -14,7 +14,9 @@ public class App {
         int a = saisie("Entrez un entier a");
         int b = saisie("Entrez un entier b");
 
-        divisionParSoustraction(a, b);
+        int quotient = divisionParSoustraction(a, b);
+
+        System.out.println("\n" + a + " ÷ " + b +" = " + quotient + "\n");
     }
 
     static int saisie(String message) {
@@ -24,23 +26,20 @@ public class App {
         return entier;
     }
 
-    static void divisionParSoustraction(int a, int b) {
+    static int divisionParSoustraction(int a, int b) {
+
+        int quotient = 0;
 
         if (b == 0) {
             System.out.println("b doit être différent de zéro '0' ");
         } else {
 
-            int qutient = 0;
-            int reste = 0;
-            int z = a;
-
-            while (z >= b) {
-                reste = z - b;
-                qutient++;
-                z -= b;
+            while (a >= b) {
+                quotient++;
+                a -= b;
             }
-
-            System.out.println("\n" + a + " ÷ " + b +" = " + qutient + " avec un reste de "+ reste + "\n");
         }
+
+        return quotient;
     }
 }

@@ -15,7 +15,9 @@ public class App {
         int a = saisie("Entrez un entier a");
         int b = saisie("Entrez un entier b");
 
-        calculPgcd(a, b);
+        int pgcd = calculPgcd(a, b);
+
+        System.out.println("\nLe PGCD de " + a + " et " + b + " est: " + pgcd + "\n");
     }
 
     static int saisie(String message) {
@@ -25,7 +27,7 @@ public class App {
         return entier;
     }
 
-    static void calculPgcd (int a, int b) {
+    static int calculPgcd (int a, int b) {
         int pgcd = 0;
 
         if (a < 0) {
@@ -43,8 +45,9 @@ public class App {
                     pgcd = y;
                     y = reste;
                 }
-                System.out.println("\nLe PGCD de " + a + " et " + b + " est: " + pgcd + "\n");
             }
         }
+
+        return pgcd;
     }
 }

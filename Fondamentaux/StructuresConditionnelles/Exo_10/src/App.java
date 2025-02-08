@@ -23,7 +23,14 @@ public class App {
         System.out.println("\nAnnée bissextile\n");
 
         int annee = saisie("Entrez une anneée");
-        anneeBissextile(annee);
+        boolean ok =  anneeBissextile(annee);
+
+        if (ok) {
+            System.out.println("\n" + annee +  " est une année bissextile\n");
+        } else {
+            System.out.println("\n" + annee + " n'est pas une année bissextile\n");
+        }
+
     }
 
     static int saisie (String message) {
@@ -33,11 +40,12 @@ public class App {
         return entier;
     }
 
-    static void anneeBissextile(int annee) {
+    static boolean anneeBissextile(int annee) {
 
         if (annee % 4 == 0 && annee % 100 != 0 || annee % 400 == 0) {
-            System.out.println("\n" + annee +  " est une année bissextile\n");
-       } else
-           System.out.println("\n" + annee + " n'est pas une année bissextile\n");
+            return true;
+       } else {
+            return false;
+        }
     }
 }

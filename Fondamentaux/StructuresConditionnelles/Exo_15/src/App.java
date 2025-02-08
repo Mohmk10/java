@@ -15,7 +15,14 @@ import java.util.Scanner;
         int mois = saisie("Entrez une date (Mois)");
         int annee = saisie("Entrez une date (Année)");
 
-        dateSuivante(jour, mois, annee);
+        int jourMois = jourMoisAnnee(annee, mois);
+        boolean ok = validationDate(jour, mois, annee);
+        if (ok) {
+            dateSuivanteCinqJours(jour, mois, annee, jourMois);
+        } else {
+            System.out.println("\nLa date entrée n'est pas valide !\n");
+        }
+        
     }
 
     static int saisie (String message) {
@@ -25,8 +32,17 @@ import java.util.Scanner;
         return entier;
     }
 
-    static void dateSuivante(int jour, int mois, int annee) {
+    static boolean anneeBissextile(int annee) {
+    
+        if (annee % 4 == 0 && annee % 100 != 0 || annee % 400 == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
+    static int jourMoisAnnee(int annee, int mois) {
+    
         int jourMois = 0;
 
         if (annee < 1900) {
@@ -38,7 +54,8 @@ import java.util.Scanner;
                     jourMois = 31;
                     break;
                 case 2:
-                    if (annee % 4 == 0 && annee % 100 != 0 || annee % 400 == 0) {
+                    boolean ok = anneeBissextile(annee);
+                    if (ok) {
                         jourMois = 29;
                     } else {
                         jourMois = 28;
@@ -75,27 +92,48 @@ import java.util.Scanner;
                     jourMois = 31;
                     break;
                 default:
-                    System.out.println("\nLe mois est compris entre 1 et 12\n");
+                    jourMois = 0;
                     break;
             }
-
-            if (jour > jourMois) {
-                System.out.println("\nLa date entrée n'est pas valide !\n");
-            } else
-                if((jour + 5) <= jourMois)
-                    jour += 5;
-                else
-                    if ((jour + 5) > jourMois && mois != 12) {
-                        jour = (jour + 5) - jourMois;
-                        mois++;
-                    } else
-                        if ((jour + 5) > jourMois && mois == 12) {
-                            jour = (jour + 5) - jourMois;
-                            mois = 1;
-                            annee++;
-                        }
-
-            System.out.println("\nLa date suivante est: " + jour + " / " + mois + " / " + annee + "\n");
         }
+
+        return jourMois;
+    }
+
+    static boolean validationDate(int jour, int mois, int annee) {
+
+        int jourMois = 0;
+
+        if (annee < 1900) {
+            System.out.println("\nL'année doit être supérieur ou égal à 1900\n");
+            return false;
+        } else {
+            jourMois = jourMoisAnnee(annee, mois);
+
+            if(jour <= jourMois) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+    }
+
+    static void dateSuivanteCinqJours(int jour, int mois, int annee, int jourMois) {
+
+        if((jour + 5) <= jourMois)
+            jour += 5;
+        else
+            if ((jour + 5) > jourMois && mois != 12) {
+                jour = (jour + 5) - jourMois;
+                mois++;
+            } else
+                if ((jour + 5) > jourMois && mois == 12) {
+                    jour = (jour + 5) - jourMois;
+                    mois = 1;
+                    annee++;
+                }
+
+        System.out.println("\nLa date dans 5 jours est: " + jour + " / " + mois + " / " + annee + "\n");
     }
 }

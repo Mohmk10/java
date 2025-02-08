@@ -15,7 +15,11 @@ public class App {
         float r2 = saisie("Entrez la resistance R2");
         float r3 = saisie("Entrez la resistance R3");
 
-        resistances(r1, r2, r3);
+        float serie = resistanceSerie(r1, r2, r3);
+        float parallele = resistanceParallele(r1, r2, r3);
+
+        System.out.println("\nLa résistance en serie: " + serie);
+        System.out.println("\nLa résistance en parallèle: " + parallele + "\n");
 
     }
 
@@ -26,11 +30,15 @@ public class App {
         return entier;
     }
 
-    static void resistances(float r1, float r2, float r3) {
-        float resistanceSerie = r1 + r2 + r3;
-        float resistanceParallele = (r1 * r2 * r3) / (r1 * r2 + r2 * r3 + r1 * r3);
+    static float resistanceSerie(float r1, float r2, float r3) {
 
-        System.out.println("\nLa résistance en serie: " + resistanceSerie);
-        System.out.println("\nLa résistance en parallèle: " + resistanceParallele + "\n");
+        float resistance = r1 + r2 + r3;
+        return resistance;
+    }
+
+    static float resistanceParallele(float r1, float r2, float r3) {
+
+        float resistance = (r1 * r2 * r3) / (r1 * r2 + r2 * r3 + r1 * r3);
+        return resistance;
     }
 }

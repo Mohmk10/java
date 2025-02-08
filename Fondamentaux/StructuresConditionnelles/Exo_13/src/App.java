@@ -15,7 +15,14 @@ public class App {
         int mois = saisie("Entrez une date (Mois)");
         int annee = saisie("Entrez une date (Année)");
 
-        dateSuivante(jour, mois, annee);
+        int jourMois = jourMoisAnnee(annee, mois);
+        boolean valider = validationDate(jour, mois, annee);
+
+        if (valider) {
+            dateSuivante(jour, mois, annee, jourMois);
+        } else {
+            System.out.println("\nLa date entrée n'est pas valide\n");
+        }
     }
 
     static int saisie (String message) {
@@ -25,8 +32,17 @@ public class App {
         return entier;
     }
 
-    static void dateSuivante(int jour, int mois, int annee) {
+    static boolean anneeBissextile(int annee) {
+    
+        if (annee % 4 == 0 && annee % 100 != 0 || annee % 400 == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
+    static int jourMoisAnnee(int annee, int mois) {
+    
         int jourMois = 0;
 
         if (annee < 1900) {
@@ -38,7 +54,8 @@ public class App {
                     jourMois = 31;
                     break;
                 case 2:
-                    if (annee % 4 == 0 && annee % 100 != 0 || annee % 400 == 0) {
+                    boolean ok = anneeBissextile(annee);
+                    if (ok) {
                         jourMois = 29;
                     } else {
                         jourMois = 28;
@@ -75,27 +92,52 @@ public class App {
                     jourMois = 31;
                     break;
                 default:
+                    jourMois = 0;
                     System.out.println("\nLe mois est compris entre 1 et 12\n");
                     break;
             }
+        }
 
-            if (jour > jourMois) {
-                System.out.println("\nLa date entrée n'est pas valide !\n");
-            } else
-                if(jour < jourMois)
-                    jour++;
-                else
-                    if (jour == jourMois && mois != 12) {
-                        jour = 1;
-                        mois++;
-                    } else
-                        if (jour == jourMois && mois == 12) {
-                            jour = 1;
-                            mois = 1;
-                            annee++;
-                        }
+        return jourMois;
+    }
 
-            System.out.println("\nLa date suivante est: " + jour + " / " + mois + " / " + annee + "\n");
+    static boolean validationDate(int jour, int mois, int annee) {
+
+        int jourMois = 0;
+
+        if (annee < 1900) {
+            System.out.println("\nL'année doit être supérieur ou égal à 1900\n");
+            return false;
+        } else {
+            jourMois = jourMoisAnnee(annee, mois);
+
+            if(jour <= jourMois) {
+                return true;
+            }
+            else {
+                return false;
+            }
         }
     }
+
+    static void dateSuivante(int jour, int mois, int annee, int jourMois) {
+
+        if(jour < jourMois) {
+            jour++;
+        }
+        else {
+            if (jour == jourMois && mois != 12) {
+                jour = 1;
+                mois++;
+            } else
+                if (jour == jourMois && mois == 12) {
+                    jour = 1;
+                    mois = 1;
+                    annee++;
+                }
+        }
+
+        System.out.println("\nLa date suivante est: " + jour + " / " + mois + " / " + annee + "\n");
+    }
+
 }

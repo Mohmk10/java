@@ -19,7 +19,15 @@ public class App {
 
         System.out.println("\nDévinnez l'entier entré par le 1er user");
 
-        devinette(nombre);
+        int a = devinette(nombre);
+
+        System.out.println("\nFélicitaions !");
+
+        if (a < 5) {
+            System.out.println("\nExcellent avec moins de 5 éssais\n");
+        } else {
+            System.out.println("\nPassable\n");
+        }
     }
 
     static int saisie(String message) {
@@ -29,7 +37,7 @@ public class App {
         return entier;
     }
 
-    static void devinette(int nombre) {
+    static int devinette(int nombre) {
 
         int nombreA;
         int a = 0;
@@ -51,11 +59,6 @@ public class App {
 
         } while (nombre != nombreA);
 
-        System.out.println("\nFélicitaions !");
-
-        if (a < 3) {
-            System.out.println("\nExcellent avec moins de 3 éssais\n");
-        } else 
-            System.out.println("\nPassable\n");
+        return a;
     }
 }

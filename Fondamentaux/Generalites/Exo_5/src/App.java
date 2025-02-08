@@ -7,15 +7,18 @@ import java.util.Scanner;
 
 public class App {
 
+    final static float DOLLARS_USA = 0.0016f;
+    final static float DOLLARS_STERLING = 0.00126f;
+
     static Scanner scn = new Scanner(System.in);
     public static void main(String[] args) throws Exception {
 
-        
-
         float montant = saisie();
-        conversion(montant);
-
-
+        float usa = conversionDollarUsa(montant);
+        float sterling = conversionDollarSterling(montant);
+        
+        System.out.println("\n" + montant + " CFA" + " = " + usa + " $");
+        System.out.println("\n" + montant + " CFA" + " = " + sterling + " £\n");
     }
 
     static float saisie() {
@@ -25,14 +28,15 @@ public class App {
         return entier;
     }
 
-    static void conversion (float montant) {
-        final float DOLLARS_USA = 0.0016f;
-        final float DOLLARS_STERLING = 0.00126f;
+    static float conversionDollarUsa(float montant) {
 
         float montantDollars = montant * DOLLARS_USA;
-        float montantSterling = montant * DOLLARS_STERLING;
+        return montantDollars;
+    }
 
-        System.out.println("\n" + montant + " CFA" + " = " + montantDollars + " $");
-        System.out.println("\n" + montant + " CFA" + " = " + montantSterling + " £\n");
+    static float conversionDollarSterling (float montant) {
+
+        float montantSterling = montant * DOLLARS_STERLING;
+        return montantSterling;
     }
 }

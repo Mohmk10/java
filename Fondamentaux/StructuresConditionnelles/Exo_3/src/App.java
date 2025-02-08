@@ -12,8 +12,15 @@ import java.util.Scanner;
         System.out.println("\nRésolution d'une équation du 1er degré: ax + b = 0");
 
         float a = saisie("Entrez la valeur de a");
-        equationPremierDegre(a);
 
+        if (a == 0) {
+            System.out.println("\nLa valeur de a doit être différent de zéro '0' \n");
+        } else {
+            float b = saisie("Entrez la valeur de b");
+            float solution = equationPremierDegre(a, b);
+
+            System.out.println("\nLa solution de " + a + "x + " + b + " est: " + solution + "\n");
+        }
     }
 
     static float saisie(String message) {
@@ -23,14 +30,9 @@ import java.util.Scanner;
         return entier;
     }
 
-    static void equationPremierDegre(float a) {
-        if (a == 0) {
-            System.out.println("\nLa valeur de a doit être différent de zéro '0' \n");
-        } else {
-            float b = saisie("Entrez la valeur de b");
-            float solution = -(b / a);
-
-            System.out.println("\nLa solution de " + a + "x + " + b + " est: " + solution + "\n");
-        }
+    static float equationPremierDegre(float a, float b) {
+       
+        float solution = -(b / a);
+        return solution;
     }
 }

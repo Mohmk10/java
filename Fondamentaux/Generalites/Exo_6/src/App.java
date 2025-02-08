@@ -21,7 +21,13 @@ public class App {
         float longueur = saisie("Entrez la longueur");
         float largeur = saisie("Entrez la largeur");
 
-        rectangle(longueur, largeur);
+        float perimetre = perimetreRectangle(longueur, largeur);
+        float surface = surfaceRectangle(longueur, largeur);
+        float diagonal = diagonalRectangle(longueur, largeur);
+
+        System.out.println("\nLe périmètre: " + perimetre);
+        System.out.println("\nLa surface: " + surface);
+        System.out.println("\nLe diagonal: " + diagonal + "\n");
 
     }
 
@@ -32,13 +38,21 @@ public class App {
         return entier;
     }
 
-    static void rectangle (float longueur, float largeur){
-        float perimetre = 2 * (longueur + largeur);
-        float surface = longueur * largeur;
-        float diagonal = (float) Math.sqrt((longueur * longueur) + (largeur * largeur));
+    static float perimetreRectangle (float longueur, float largeur) {
 
-        System.out.println("\nLe périmètre: " + perimetre);
-        System.out.println("\nLa surface: " + surface);
-        System.out.println("\nLe diagonal: " + diagonal + "\n");
+        float perimetre = 2 * (longueur + largeur);
+        return perimetre;
+    }
+
+    static float surfaceRectangle (float longueur, float largeur) {
+        
+        float surface = longueur * largeur;
+        return surface;
+    }
+
+    static float diagonalRectangle (float longueur, float largeur) {
+        
+        float diagonal = (float) Math.sqrt((longueur * longueur) + (largeur * largeur));
+        return diagonal;
     }
 }

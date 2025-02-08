@@ -16,7 +16,8 @@ public class App {
     public static void main(String[] args) throws Exception {
 
         float a = saisie();
-        conversion(a);
+        float converti = conversion(a);
+        System.out.println("\n" + a +" °C" + " = " + converti + " °F\n" );
     }
 
     static float saisie() {
@@ -26,10 +27,11 @@ public class App {
         return entier;
     }
 
-    static void conversion(float entier) {
+    static float conversion(float entier) {
 
         float fahrenheit = (float) (entier * 9/5) + 32;
-
-        System.out.println("\n" + entier +" °C" + " = " + fahrenheit + " °F\n" );
+        return fahrenheit;
     }
+
+
 }

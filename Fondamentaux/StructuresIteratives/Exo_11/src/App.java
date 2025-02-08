@@ -16,9 +16,13 @@ public class App {
 
         int entier = saisie("Entrez un entier");
 
-       nombrePremier(entier);
+        boolean ok = nombrePremier(entier);
 
-        sn.close();
+        if (ok) {
+            System.out.println("\nL'entier " + entier + " est premier\n");
+        } else {
+            System.out.println("\nL'entier " + entier + " n'est pas premier\n");
+        }
     }
 
     static int saisie(String message) {
@@ -28,7 +32,7 @@ public class App {
         return entier;
     }
 
-    static void nombrePremier(int entier) {
+    static boolean nombrePremier(int entier) {
 
         int premier = 0;
 
@@ -43,8 +47,9 @@ public class App {
         }
 
         if (premier == 0) {
-            System.out.println("\nL'entier " + entier + " est premier\n");
-        } else
-            System.out.println("\nL'entier " + entier + " n'est pas premier\n");
+            return true;
+        } else {
+            return false;
+        }
     }
 }

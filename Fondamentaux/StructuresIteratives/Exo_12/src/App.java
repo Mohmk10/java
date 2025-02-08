@@ -16,7 +16,12 @@ import java.util.Scanner;
         System.out.println("\n Entier Parfait");
         int entier = saisie("Entrez un entier");
 
-        entierParfait(entier);
+        boolean ok = entierParfait(entier);
+        if (ok) {
+            System.out.println("\n" + entier + " est un entier parfait\n");
+        } else {
+            System.out.println("\n" + entier + " n'est pas un entier parfait\n");
+        }
     }
 
     static int saisie(String message) {
@@ -26,7 +31,7 @@ import java.util.Scanner;
         return entier;
     }
 
-    static void entierParfait(int entier) {
+    static boolean entierParfait(int entier) {
         int a = 0;
 
         for(int i = 1; i < entier; i++) {
@@ -34,10 +39,10 @@ import java.util.Scanner;
                 a+= i;
             }
         }
-        
-        if (a == entier)
-            System.out.println("\n" + entier + " est un entier parfait\n");
-        else
-            System.out.println("\n" + entier + " n'est pas un entier parfait\n");
+        if (a == entier) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

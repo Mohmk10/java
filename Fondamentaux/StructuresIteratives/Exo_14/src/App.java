@@ -23,7 +23,7 @@ public class App {
         return entier;
     }
 
-    static int nombrePremier(int entier) {
+    static boolean nombrePremier(int entier) {
 
         int premier = 0;
 
@@ -34,9 +34,10 @@ public class App {
         }
 
         if (premier == 0) {
-            return premier;
-        } else
-            return premier;
+            return true;
+        } else {
+            return false;
+        }
     }
 
     static void afficheNombrePremier(int entier) {
@@ -44,8 +45,8 @@ public class App {
         System.out.println("\nLes nombres premiers enre 1 et " + entier + " sont: \n");
 
         for (int i = 1; i < entier; i++) {
-            int premier = nombrePremier(i);
-            if (premier == 0 && i != 1) {
+            boolean premier = nombrePremier(i);
+            if (premier && i != 1) {
                 System.out.print(i + "\t");
             }
         }

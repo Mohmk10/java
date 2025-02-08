@@ -22,7 +22,17 @@ public class App {
 
         float choix = saisie("Faites un choix");
 
-        resistances(r1, r2, r3, choix);
+        float serie = resistanceSerie(r1, r2, r3);
+        float parallele = resistanceParallele(r1, r2, r3);
+
+        if (choix == 1) {
+            System.out.println("\nLa résistance en serie: " + serie + "\n");
+        } else {
+            if (choix == 2) {
+                System.out.println("\nLa résistance en parallèle: " + parallele + "\n");
+            } else 
+                System.out.println("Veuillez choisir 1 ou 2");
+        }
 
     }
 
@@ -33,17 +43,15 @@ public class App {
         return entier;
     }
 
-    static void resistances(float r1, float r2, float r3, float choix) {
-        if (choix == 1) {
-            float resistanceSerie = r1 + r2 + r3;
-            System.out.println("\nLa résistance en serie: " + resistanceSerie + "\n");
-        } else {
-            if (choix == 2) {
-                float resistanceParallele = (r1 * r2 * r3) / (r1 * r2 + r2 * r3 + r1 * r3);
-                System.out.println("\nLa résistance en parallèle: " + resistanceParallele + "\n");
-            } else 
-                System.out.println("Veuillez choisir 1 ou 2");
-        }
-        
+    static float resistanceSerie(float r1, float r2, float r3) {
+
+        float resistance = r1 + r2 + r3;
+        return resistance;
+    }
+
+    static float resistanceParallele(float r1, float r2, float r3) {
+
+        float resistance = (r1 * r2 * r3) / (r1 * r2 + r2 * r3 + r1 * r3);
+        return resistance;
     }
 }

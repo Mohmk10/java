@@ -22,7 +22,7 @@ public class App {
         return entier;
     }
 
-    static int nombrePremier(int entier) {
+    static boolean nombrePremier(int entier) {
 
         int premier = 0;
 
@@ -33,9 +33,10 @@ public class App {
         }
 
         if (premier == 0) {
-            return premier;
-        } else
-            return premier;
+            return true;
+        } else {
+            return false;
+        }
     }
 
     static void nombreDeNombrePremier(int entier) {
@@ -46,9 +47,9 @@ public class App {
 
         do {
 
-            int premier = nombrePremier(b);
+            boolean premier = nombrePremier(b);
 
-            if (premier == 0 && b != 1) {
+            if (premier && b != 1) {
                 a++;
                 System.out.print(b + "\t");
             }

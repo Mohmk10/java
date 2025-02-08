@@ -16,9 +16,9 @@ public class App {
         int a = saisie("Entrez un entier a");
         int b = saisie("Entrez un entier b");
 
-        calculPpmc(a, b);
+        int ppcm = calculPpmc(a, b);
 
-        sn.close();
+        System.out.println("\nLe PPCM de " + a + " et " + b + " est: " + ppcm + "\n");
     }
 
     static int saisie(String message) {
@@ -28,7 +28,7 @@ public class App {
         return entier;
     }
 
-    static void calculPpmc (int a, int b) {
+    static int calculPpmc (int a, int b) {
 
         int pgcd = 0;
         if (a < 0) {
@@ -51,6 +51,6 @@ public class App {
 
         int ppcm = a * b / pgcd;
 
-        System.out.println("\nLe PPCM de " + a + " et " + b + " est: " + ppcm + "\n");
+        return ppcm;
     }
 }

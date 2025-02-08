@@ -22,20 +22,25 @@ public class App {
         return entier;
     }
 
-    static int nombrePremier(int entier) {
+    static boolean nombrePremier(int entier) {
 
         int premier = 0;
 
-        for (int i = 1; i < entier; i++) {
-            if (entier % i == 0 && i != 1) {
-                premier++;
+        if (entier <= 1) {
+            System.out.println("\n Ce nombre n'est pas premier\n");
+        } else {
+            for (int i = 1; i < entier; i++) {
+                if (entier % i == 0 && i != 1) {
+                    premier++;
+                }
             }
         }
 
         if (premier == 0) {
-            return premier;
-        } else
-            return premier;
+            return true;
+        } else {
+            return false;
+        }
     }
 
     static void suiteNombrePremier() {
@@ -50,9 +55,9 @@ public class App {
                 a++;
             }
 
-            int premier = nombrePremier(entier);
+            boolean premier = nombrePremier(entier);
 
-            if (premier == 0 && entier != 0) {
+            if (premier) {
                 b++;
 
                 System.out.println("\n " + entier + " est un nombre premier");

@@ -13,16 +13,38 @@ public class App {
 
         int entier1 = saisie("Entrez le 1er entier");
 
-        System.out.println("\na - Addition '+' ");
-        System.out.println("\ns - Soustraction '-' ");
-        System.out.println("\nm - Multiplation '*' ");
-        System.out.println("\nd - Division '/' ");
+       String op = menu();
 
-        System.out.print("\nChoisissez l'opérateur: ");
-        String op = scn.next();
+       int entier2 = saisie("Entrez le 2nd entier");
 
-        calculatrice(entier1, op);
+       if (op.compareTo("a") == 0) {
+            
+            int somme = somme(entier1, entier2);
+            System.out.println("\nLa somme de " + entier1 + " et " + entier2 + " est: " + somme + "\n");
 
+        } else {
+            if (op.compareTo("s") == 0) {
+
+                int diff = difference(entier1, entier2);
+                System.out.println("\nLa différence de " + entier1 + " et " + entier2 + " est: " + diff + "\n");
+
+            } else {
+                if (op.compareTo("m") == 0) {
+
+                    int produit = produit(entier1, entier2);
+                    System.out.println("\nLe produit de " + entier1 + " et " + entier2 + " est: " + produit + "\n");
+
+                } else {
+                    if (op.compareTo("d") == 0) {
+                    
+                        int quotient = quotient(entier1, entier2);
+                        System.out.println("\nLe quotient de " + entier1 + " et " + entier2 + " est: " + quotient + "\n");
+                    } else {
+                        System.out.println("\nVeuillez choisir un caractère pour éffectuer l'opération souhaitée\n");
+                    }
+                }
+            }
+        }
     }
 
     static int saisie(String message) {
@@ -32,28 +54,42 @@ public class App {
         return entier;
     }
 
-    static void calculatrice(int entier1, String op) {
+    static String menu () {
 
-        if (op.compareTo("a") == 0) {
-            int entier2 = saisie("Entrez le 2nd entier");
-            int somme = entier1 + entier2;
-            System.out.println("\nLa somme de " + entier1 + " et " + entier2 + " est: " + somme + "\n");
-        } else
-            if (op.compareTo("s") == 0) {
-                int entier2 = saisie("Entrez le 2nd entier");
-                int diff = entier1 - entier2;
-                System.out.println("\nLa différence de " + entier1 + " et " + entier2 + " est: " + diff + "\n");
-            } else
-                if (op.compareTo("m") == 0) {
-                    int entier2 = saisie("Entrez le 2nd entier");
-                    int produit = entier1 * entier2;
-                    System.out.println("\nLe produit de " + entier1 + " et " + entier2 + " est: " + produit + "\n");
-                } else 
-                    if (op.compareTo("d") == 0) {
-                        int entier2 = saisie("Entrez le 2nd entier");
-                        int quotient = entier1 / entier2;
-                        System.out.println("\nLe quotient de " + entier1 + " et " + entier2 + " est: " + quotient + "\n");
-                    } else
-                        System.out.println("\nVeuillez choisir un caractère pour éffectuer l'opération souhaitée\n");
+        System.out.println("\na - Addition '+' ");
+        System.out.println("\ns - Soustraction '-' ");
+        System.out.println("\nm - Multiplation '*' ");
+        System.out.println("\nd - Division '/' ");
+
+        System.out.print("\nChoisissez l'opérateur: ");
+        String op = scn.next();
+
+        return op;
     }
+
+    static int somme(int entier1, int entier2) {
+
+        int somme = entier1 + entier2;
+        return somme;
+    }
+
+    static int difference(int entier1, int entier2) {
+        
+        int diff = entier1 - entier2;
+        return diff;
+    }
+
+    static int produit(int entier1, int entier2) {
+        
+        int produit = entier1 * entier2;
+        return produit;
+    }
+
+    static int quotient(int entier1, int entier2) {
+        
+        int quotient = entier1 / entier2;
+        return quotient;
+    }
+
+    
 }
