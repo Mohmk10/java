@@ -1,0 +1,15 @@
+# Ignorer tout à la racine
+/*
+
+# Exception pour le dossier Tableaux d'Objets lui-même
+!/Tableaux d'Objets/
+
+# Exception pour le dossier Gestion_Transaction à l'intérieur de Tableaux d'Objets
+!/Tableaux d'Objets/Gestion_Transaction/
+
+# Exception pour TOUT le contenu du dossier Gestion_Transaction
+!/Tableaux d'Objets/Gestion_Transaction/**/*
+
+# Exceptions pour les fichiers spécifiques que vous voulez garder à la racine
+!/README.md
+!.gitignore
