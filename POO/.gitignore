@@ -5,10 +5,10 @@
 !/Tableaux d'Objets/
 
 # Exception pour le dossier Gestion_Transaction à l'intérieur de Tableaux d'Objets
-!/Tableaux d'Objets/Gestion_Transaction/
+!/Tableaux d'Objets/Gestion_Bien/
 
 # Exception pour TOUT le contenu du dossier Gestion_Transaction
-!/Tableaux d'Objets/Gestion_Transaction/**/*
+!/Tableaux d'Objets/Gestion_Bien/**/*
 
 # Exceptions pour les fichiers spécifiques que vous voulez garder à la racine
 !/README.md
