@@ -1,7 +1,11 @@
 package view;
 
+import java.util.List;
 import java.util.Scanner;
 
+import entity.Client;
+import entity.Dette;
+import entity.Paiement;
 import service.PaiementService;
 
 public class PaiementView {
@@ -21,16 +25,14 @@ public class PaiementView {
         return x;
     }
 
-    // public Paiement saisiePaiement() {
-    //     double montant = saisieDouble("Entrez le montant");
-    //     return new Paiement(montant);
-    // }
+    public Paiement saisiePaiement() {
+        double montant = saisieDouble("Entrez le montant");
+        return new Paiement(montant);
+    }
 
-    public void affciherPaiement() {
-        if (paiementService.getPaiements() == null) {
-            System.out.println("\nLe tableau de Paiement est vide !!");
-        } else {
-            paiementService.listerPaiement();
+    public void affciherPaiementDetteClient(List<Paiement> paiements) {
+        for (Paiement paiement : paiements) {
+            System.out.println(paiement.toString());
         }
     }
 }

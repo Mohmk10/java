@@ -1,7 +1,7 @@
 package entity;
 
+import utils.DateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,11 +28,12 @@ public class Dette {
     }
 
     public Dette() {
-        
+        this.id = ++compteur;
+        this.date = LocalDate.now();
+        this.statut = StatutDette.IMPAYER;
     }
 
-    public enum StatutDette {IMPAYER, REMBOURSER}
-
+    
     public int getId() {
         return id;
     }
@@ -91,9 +92,8 @@ public class Dette {
 
     @Override
     public String toString() {
-        DateTimeFormatter fomat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String dateFormater = date.format(fomat);
-        return "\nID: " + id + "\nDate: " + dateFormater + "\nMontant de la dette: " + montantDette + "\nMontant payer: " + montantPayer +
+        
+        return "\nID: " + id + "\nDate: " + DateFormat.formatDate(date) + "\nMontant de la dette: " + montantDette + "\nMontant payer: " + montantPayer +
                 "\nMontant restant: " + montantRestant + "\nN° Client: " + client.getTel() + "\nNom du client: " + client.getNom() + 
                 "\nNombre de paiements du client: " + paiements.size() + "\nStatut de la dette: " + statut;
     }

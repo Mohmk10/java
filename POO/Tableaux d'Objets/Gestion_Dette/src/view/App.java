@@ -24,8 +24,7 @@ import java.util.Scanner;
 
 import entity.Client;
 import entity.Dette;
-import entity.Paiement;
-import entity.Dette.StatutDette;
+import entity.StatutDette;
 import service.ClientService;
 import service.DetteService;
 import service.PaiementService;
@@ -48,11 +47,13 @@ public class App {
             switch (menu) {
                 case 1:
                     Client client = clientView.saisieClient();
-                    if (!clientService.addClient(client)) {
-                        System.out.println("\nCe client existe déjà\n");
-                    } else {
+                    var clientVerify = clientService.rechercheParTel(client.getTel());
+                    if (clientVerify == null) {
+                        clientService.addClient(client);
                         System.out.println("\nClient ajouté avec succès\n");
-                    }
+                    } else {
+                            System.out.println("\nCe client existe déjà\n");
+                        }
                     break;
                 case 2:
                     System.out.println("\n====Liste des clients====");
@@ -71,7 +72,8 @@ public class App {
                     }
                     break;
                 case 4:
-                    detteService.listerDette();
+                    var dettes = detteService.listerDette();
+                    detteView.afficherDette(dettes);
                     int choix;
                     do {
                         System.out.println("\nVoulez-vous filtrer par Client ?\n");
@@ -83,7 +85,7 @@ public class App {
                             if (client2 == null) {
                                 System.out.println("\nAucun client ne possède ce N° de tel");
                             } else {
-                                detteService.listerDetteParClient(client2);
+                                detteView.afficherDette(client2.getDettes());
                             }
                         }
                     } while (choix != 2);
@@ -95,7 +97,7 @@ public class App {
                     if (client3 == null) {
                         System.out.println("\nAucun client ne possède ce N° de tel");
                     } else {
-                        detteService.listerMontantTotalClient(client3);
+                        System.out.println("\n Le montant total des dettes du client: " + client3.listerMontantTotalClient());
                     }
                     break;
                 case 6:
@@ -104,57 +106,32 @@ public class App {
                     if (client4 == null) {
                         System.out.println("\nAucun client ne possède ce N° de tel");
                     } else {
-                        
                         if (client4.getDettes() == null || client4.getDettes().isEmpty()) {
                             System.out.println("\nCe lient n'a aucune dette !");
                         } else {
                             System.out.println("\n====Liste des dettes du client " + client4.getNom() + " ====");
-                            detteService.listerDetteParClient(client4);
+                            detteView.afficherDette(client4.getDettes());
 
                             System.out.println("\nEntrez l'ID de la dette à laquelle vous voulez assigner un paiement");
                             int id = saisieInt("Entrez l'ID");
 
-                            boolean detteTrouvee = false;
-
-                            for (Dette dette : client4.getDettes()) {
-                                if (dette.getId() == id) {
-                                    detteTrouvee = true;
+                            var dette = detteService.rechercheDetteParId(id);
+                            if (dette != null) {
+                                if (dette.getStatut() == StatutDette.REMBOURSER) {
+                                    System.out.println("\nCette dette est remboursée.");
+                                } else {
                                     System.out.println(dette.toString());
-                                    int r = menuPaiement();
-                                    switch (r) {
-                                        case 1:
-                                            Paiement paiement = new Paiement(dette.getMontantRestant());
-                                            dette.setMontantPayer(dette.getMontantDette());
-                                            dette.setMontantRestant(dette.getMontantDette() - dette.getMontantPayer());
-                                            dette.addPaiement(paiement);
-                                            dette.setStatut(StatutDette.REMBOURSER);
-                                            paiementService.addPaiement(paiement);
-                                            System.out.println("\nDette mise à jour !");
-                                            break;
-                                        case 2:
-                                            double prix = saisieDouble("Entrez le montant");
-                                            if (prix >= dette.getMontantRestant()) {
-                                                System.out.println("\nVeullez faire un Remboursement total");
-                                                break;
-                                            } else {
-                                                Paiement paiement1 = new Paiement(prix);
-                                                dette.setMontantPayer(dette.getMontantPayer() + prix);
-                                                dette.setMontantRestant(dette.getMontantRestant() - prix);
-                                                dette.addPaiement(paiement1);
-                                                paiementService.addPaiement(paiement1);
-                                                System.out.println("\nDette mise à jour !");
-                                            }
-                                            break;
-                                        case 3:
-                                            System.out.println("\nPaiement annulé !");
-                                            break;
-                                        default:
-                                            break;
+                                    var paiement = paiementView.saisiePaiement();
+                                    if (dette.getMontantRestant() > paiement.getMontant()) {
+                                        dette.addPaiement(paiement);
+                                        paiementService.addPaiement(paiement, dette);
+                                    } else {
+                                        dette.addPaiement(paiement);
+                                        paiementService.addPaiement(paiement, dette);
+                                        System.out.println("La dette a été totalement payée");
                                     }
-                                    break;
                                 }
-                            }
-                            if (!detteTrouvee) {
+                            } else {
                                 System.out.println("\nAucune dette ne correspond à l'ID " + id + " pour ce client.");
                             }
                         }
@@ -172,13 +149,15 @@ public class App {
                             System.out.println("\nEntrez l'ID de la dette à laquelle vous voulez lister les paiements");
                             int id = saisieInt("Entrez l'ID");
 
-                            boolean detteTrouvee = false;
+                            var dette = clientService.rechercheDetteParId(id, client5);
 
-                            for (Dette dette : client5.getDettes()) {
-                                if (dette.getId() == id) {
-                                    detteTrouvee = true;
-                                    System.out.println("\n====Liste des dettes du client " + client5.getNom() + " ====");
-                                    paiementService.listerPaiement();
+                            if (dette == null) {
+                                System.out.println("\nAucune dette de ce client n'a cet ID");
+                            } else {
+                                if (dette.getPaiements().isEmpty()) {
+                                    System.out.println("\nCette dette n'a aucun paiement");
+                                } else {
+                                    paiementView.affciherPaiementDetteClient(dette.getPaiements());
                                 }
                             }
                         }
@@ -226,17 +205,6 @@ public class App {
         return sn.nextInt();
     }
 
-    static int menuPaiement() {
-        System.out.println("\n==== Menu Paiement ====");
-        System.out.println("1 - Remboursement total");
-        System.out.println("2 - Remboursement partiel");
-        System.out.println("3 - Annuler");
-        System.out.println("======================");
-
-        System.out.print("Faites un choix: ");
-        return sn.nextInt();
-    }
-
     static int menu() {
 
         System.out.println("\n=== Menu Principal ===");
@@ -246,7 +214,7 @@ public class App {
         System.out.println("4 - Lister dettes d’un client");// Modifier en : Lister toutes les dettes et filtrer par client
         System.out.println("5 - Lister Montant total dû Par client");
         System.out.println("6 - Ajouter un Paiement à une Dette");
-        System.out.println("7 - Lister les Payements d’une Dette d’un client"); // A améliorer
+        System.out.println("7 - Lister les Payements d’une Dette d’un client");
         System.out.println("8 - Quitter");
         System.out.println("======================");
 

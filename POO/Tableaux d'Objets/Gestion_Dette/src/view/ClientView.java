@@ -27,7 +27,7 @@ public class ClientView {
     }
 
     public Client saisieClient() {
-        System.out.println("\n====Saisie d'un Bien====");
+        System.out.println("\n====Saisie d'un Client====");
         String nom = saisieString("Entrez le nom");
         String adresse = saisieString("Entrez l'adresse");
         String tel = saisieString("Entrez le téléphone");

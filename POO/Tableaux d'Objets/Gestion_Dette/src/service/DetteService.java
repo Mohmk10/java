@@ -3,7 +3,7 @@ package service;
 import java.util.ArrayList;
 import java.util.List;
 
-import entity.Client;
+
 import entity.Dette;
 
 public class DetteService {
@@ -17,27 +17,17 @@ public class DetteService {
         this.dettes.add(dette);
     }
 
-    public void listerDette() {
-        for (Dette dette : dettes) {
-            System.out.println(dette.toString());
-        }
+    public List<Dette> listerDette() {
+        return dettes;
     }
 
-    public void listerDetteParClient(Client client) {
+    public Dette rechercheDetteParId(int id) {
         for (Dette dette : dettes) {
-            if (dette.getClient() == client) {
-                System.out.println(dette.toString());
+            if (dette.getId() == id) {
+                return dette;
             }
         }
-    }
 
-    public void listerMontantTotalClient(Client client) {
-        double total = 0;
-        for (Dette dette : dettes) {
-            if (dette.getClient() == client) {
-                total += dette.getMontantRestant();
-            }
-        }
-        System.out.println("\nLe montant total dû par ce client est: " + total + "\n");
+        return null;
     }
 }

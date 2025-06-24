@@ -1,5 +1,6 @@
 package view;
 
+import java.util.List;
 import java.util.Scanner;
 
 import entity.Client;
@@ -31,11 +32,9 @@ public class DetteView {
         return new Dette(montantDette, montantPayer, client);
     }
 
-    public void afficherDette() {
-        if (detteService.getDettes() == null) {
-            System.out.println("\nLe tableau de Dettes est vide !!");
-        } else {
-            detteService.listerDette();
+    public void afficherDette(List<Dette> dettes) {
+        for (Dette dette : dettes) {
+            System.out.println(dette.toString());
         }
     }
 

@@ -1,7 +1,7 @@
 package entity;
 
+import utils.DateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,10 +14,6 @@ public class Paiement {
     public Paiement(double montant) {
         this.date = LocalDate.now();
         this.montant = montant;
-    }
-
-    public Paiement() {
-
     }
 
     public LocalDate getDate() {
@@ -38,9 +34,7 @@ public class Paiement {
 
     @Override
     public String toString() {
-        DateTimeFormatter fomat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String dateFormater = date.format(fomat);
-        return "\nDate: " + dateFormater + "\nMontant: " + montant;
+        return "\nDate: " + DateFormat.formatDate(date) + "\nMontant: " + montant;
     }
 
 }

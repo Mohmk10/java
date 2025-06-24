@@ -20,7 +20,7 @@ public class Client {
     }
 
     public Client() {
-        
+        this.id = ++ compteur;
     }
 
     public int getId() {
@@ -57,6 +57,14 @@ public class Client {
 
     public void addDette(Dette dette) {
         this.dettes.add(dette);
+    }
+
+    public double listerMontantTotalClient() {
+        double total = 0;
+        for (Dette dette : dettes) {
+            total += dette.getMontantRestant();
+        }
+        return total;
     }
 
     @Override
