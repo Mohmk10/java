@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import entity.Compte;
+import entity.TypeCompte;
 import services.CompteService;
 
 public class CompteView {
